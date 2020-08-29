@@ -1,5 +1,5 @@
 ---
-title:CSS 에서의 변수 컨트롤
+title: "CSS 에서의 변수 컨트롤"
 date: 2020-08-29 18:52
 categories: html/css
 ---
