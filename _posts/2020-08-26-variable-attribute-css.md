@@ -4,10 +4,11 @@ date: 2020-08-29 18:52
 categories: html/css
 ---
 ## CSS 에서의 변수 컨트롤
-흔히 사용하는 변수들을 var()문을 이용해 css에서도 사용할수 있다
+변수 개념을 var()문을 이용해 css에서도 사용할수 있다  
+이때 가상요소 :root 에 선언하면 전역변수화시킬 수 있다
 ``` css
-#tag {
-  --font-size : 10;
+:root {
+  --font-size : 10px;
 }
 
 #tag2 {
@@ -16,8 +17,8 @@ categories: html/css
 ```
 calc()문으로 값의 계산역시 가능하다
 ``` css
-#tag {
-  --font-size : 10;
+:root {
+  --font-size : 10px;
 }
 
 #tag2 {
