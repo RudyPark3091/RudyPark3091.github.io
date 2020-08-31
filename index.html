@@ -1,4 +1,28 @@
----
-layout: home
-author_profile: true
----
+<!DOCTYPE html>
+<html>
+  <head>
+    <title></title>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <link rel="stylesheet" href="css/general.css">
+    <link rel="stylesheet" href="css/glitch.css">
+    <link rel="stylesheet" href="css/main-bg.css">
+  </head>
+  <body class="flex-center bg-black">
+    <div id="canvas"></div>
+    <div>
+      <div id="main-title" class="glitch" data-text="RudyPark3091">RudyPark3091</div>
+      <div id="main-wrapper-navigation">
+        <a href="/posts"><span class="btn glitch" role="button" data-text="posts">posts</span></a>
+        <!--<a href="/works"><span class="btn glitch" role="button" data-text="works">works</span></a>-->
+        <a href="/about"><span class="btn glitch" role="button" data-text="about">about</span></a>
+      </div>
+    </div>
+
+    <script type="module" src="js/three.js-dev/build/three.min.js"></script>
+    <script type="module" src="js/three.js-dev/examples/jsm/controls/OrbitControls.js"></script>
+    <script type="module" src="js/three.js-dev/examples/jsm/postprocessing/EffectComposer.js"></script>
+    <script type="module" src="js/three.js-dev/examples/jsm/postprocessing/RenderPass.js"></script>
+    <script type="module" src="js/three.js-dev/examples/jsm/postprocessing/GlitchPass.js"></script>
+    <script src="js/backgroundthree.js"></script>
+  </body>
+</html>

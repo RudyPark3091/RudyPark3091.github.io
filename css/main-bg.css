@@ -1,0 +1,39 @@
+#main-container {
+  padding: 10px;
+  border: 5px solid #ffffff;
+}
+
+#main-title {
+  font-size: var(--f);
+  font-family: 'Squada One';
+  font-weight: 500;
+  display: flex;
+  mix-blend-mode: difference;
+  padding: 10px;
+  border-bottom: 5px double #ffffff;
+}
+
+#main-wrapper-navigation {
+  font-size: calc(var(--f) * 0.4);
+  font-family: "Bebas Neue";
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  mix-blend-mode: difference;
+}
+
+#main-wrapper-navigation > * {
+  margin: 10px 20px;
+}
+
+#main-wrapper-navigation > span:hover,
+#main-wrapper-navigation > a:hover {
+  color: coral;
+  transition: color 0.3s ease-in-out;
+}
+
+@media (max-width: 700px) {
+  #main-wrapper-navigation {
+    flex-direction: column;
+  }
+}
