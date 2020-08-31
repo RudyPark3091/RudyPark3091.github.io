@@ -84,7 +84,7 @@ function init() {
 
   const bgLoad = setInterval(() => {
     vertices.forEach((vertex) => {
-      if (vertex.x <= 500) {
+      if (vertex.x <= 800) {
         vertex.x *= 1.1;
         vertex.z *= 1.1;
       } else {
@@ -98,7 +98,7 @@ function init() {
       new THREE.LineBasicMaterial({ color: 0xff0000 })
     );
     scene.add(plane2);
-  }, 100);
+  }, 50);
 
   // rendering
   document.querySelector("#canvas").appendChild(renderer.domElement);
