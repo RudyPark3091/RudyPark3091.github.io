@@ -1,3 +1,9 @@
+import * as THREE from "https://threejsfundamentals.org/threejs/resources/threejs/r115/build/three.module.js";
+import { OrbitControls } from "https://threejsfundamentals.org/threejs/resources/threejs/r115/examples/jsm/controls/OrbitControls.js";
+import { EffectComposer } from "https://threejsfundamentals.org/threejs/resources/threejs/r115/examples/jsm/postprocessing/EffectComposer.js";
+import { RenderPass } from "https://threejsfundamentals.org/threejs/resources/threejs/r115/examples/jsm/postprocessing/RenderPass.js";
+import { GlitchPass } from "https://threejsfundamentals.org/threejs/resources/threejs/r115/examples/jsm/postprocessing/GlitchPass.js";
+
 const WIDTH = window.innerWidth;
 const HEIGHT = window.innerHeight;
 
