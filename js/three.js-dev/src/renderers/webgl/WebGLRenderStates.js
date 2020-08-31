@@ -1,3 +1,7 @@
+/**
+ * @author Mugen87 / https://github.com/Mugen87
+ */
+
 import { WebGLLights } from './WebGLLights.js';
 
 function WebGLRenderState() {
@@ -54,6 +58,16 @@ function WebGLRenderStates() {
 
 	let renderStates = new WeakMap();
 
+	function onSceneDispose( event ) {
+
+		const scene = event.target;
+
+		scene.removeEventListener( 'dispose', onSceneDispose );
+
+		renderStates.delete( scene );
+
+	}
+
 	function get( scene, camera ) {
 
 		let renderState;
@@ -63,6 +77,8 @@ function WebGLRenderStates() {
 			renderState = new WebGLRenderState();
 			renderStates.set( scene, new WeakMap() );
 			renderStates.get( scene ).set( camera, renderState );
+
+			scene.addEventListener( 'dispose', onSceneDispose );
 
 		} else {
 

@@ -11,22 +11,9 @@ export class Light extends Object3D {
 
 	constructor( hex?: number | string, intensity?: number );
 
-	/**
-	 * @default 'Light'
-	 */
-	type: string;
-
 	color: Color;
-
-	/**
-	 * @default 1
-	 */
 	intensity: number;
 	readonly isLight: true;
-
-	/**
-	 * @default undefined
-	 */
 	receiveShadow: boolean;
 	shadow: LightShadow;
 	/**

@@ -1,3 +1,8 @@
+/**
+ * @author Mugen87 / https://github.com/Mugen87
+ *
+ */
+
 import {
 	Color,
 	LinearFilter,
@@ -47,7 +52,8 @@ var Refractor = function ( geometry, options ) {
 	var parameters = {
 		minFilter: LinearFilter,
 		magFilter: LinearFilter,
-		format: RGBFormat
+		format: RGBFormat,
+		stencilBuffer: false
 	};
 
 	var renderTarget = new WebGLRenderTarget( textureWidth, textureHeight, parameters );

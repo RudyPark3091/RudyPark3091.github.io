@@ -1,3 +1,7 @@
+/**
+ * @author mrdoob / http://mrdoob.com/
+ */
+
 import { ArrayCamera } from '../../cameras/ArrayCamera.js';
 import { EventDispatcher } from '../../core/EventDispatcher.js';
 import { PerspectiveCamera } from '../../cameras/PerspectiveCamera.js';
@@ -74,21 +78,6 @@ function WebXRManager( renderer, gl ) {
 		}
 
 		return controller.getGripSpace();
-
-	};
-
-	this.getHand = function ( index ) {
-
-		let controller = controllers[ index ];
-
-		if ( controller === undefined ) {
-
-			controller = new WebXRController();
-			controllers[ index ] = controller;
-
-		}
-
-		return controller.getHandSpace();
 
 	};
 
@@ -273,6 +262,8 @@ function WebXRManager( renderer, gl ) {
 	const cameraRPos = new Vector3();
 
 	/**
+	 * @author jsantell / https://www.jsantell.com/
+	 *
 	 * Assumes 2 cameras that are parallel and share an X-axis, and that
 	 * the cameras' projection and world matrices have already been set.
 	 * And that near and far planes are identical for both cameras.

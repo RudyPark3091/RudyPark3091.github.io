@@ -1,3 +1,7 @@
+/**
+ * @author mrdoob / http://mrdoob.com/
+ */
+
 function numericalSort( a, b ) {
 
 	return a[ 0 ] - b[ 0 ];

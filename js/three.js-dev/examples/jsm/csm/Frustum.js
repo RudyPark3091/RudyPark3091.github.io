@@ -1,3 +1,7 @@
+/**
+ * @author vHawk / https://github.com/vHawk/
+ */
+
 import { Vector3, Matrix4 } from '../../../build/three.module.js';
 
 const inverseProjectionMatrix = new Matrix4();

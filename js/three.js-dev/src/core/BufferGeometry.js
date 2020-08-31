@@ -10,6 +10,11 @@ import { Matrix3 } from '../math/Matrix3.js';
 import { MathUtils } from '../math/MathUtils.js';
 import { arrayMax } from '../utils.js';
 
+/**
+ * @author alteredq / http://alteredqualia.com/
+ * @author mrdoob / http://mrdoob.com/
+ */
+
 let _bufferGeometryId = 1; // BufferGeometry uses odd numbers as Id
 
 const _m1 = new Matrix4();
@@ -554,19 +559,6 @@ BufferGeometry.prototype = Object.assign( Object.create( EventDispatcher.prototy
 		const position = this.attributes.position;
 		const morphAttributesPosition = this.morphAttributes.position;
 
-		if ( position && position.isGLBufferAttribute ) {
-
-			console.error( 'THREE.BufferGeometry.computeBoundingBox(): GLBufferAttribute requires a manual bounding box. Alternatively set "mesh.frustumCulled" to "false".', this );
-
-			this.boundingBox.set(
-				new Vector3( - Infinity, - Infinity, - Infinity ),
-				new Vector3( + Infinity, + Infinity, + Infinity )
-			);
-
-			return;
-
-		}
-
 		if ( position !== undefined ) {
 
 			this.boundingBox.setFromBufferAttribute( position );
@@ -607,7 +599,7 @@ BufferGeometry.prototype = Object.assign( Object.create( EventDispatcher.prototy
 
 		if ( isNaN( this.boundingBox.min.x ) || isNaN( this.boundingBox.min.y ) || isNaN( this.boundingBox.min.z ) ) {
 
-			console.error( 'THREE.BufferGeometry.computeBoundingBox(): Computed min/max have NaN values. The "position" attribute is likely to have NaN values.', this );
+			console.error( 'THREE.BufferGeometry.computeBoundingBox: Computed min/max have NaN values. The "position" attribute is likely to have NaN values.', this );
 
 		}
 
@@ -623,16 +615,6 @@ BufferGeometry.prototype = Object.assign( Object.create( EventDispatcher.prototy
 
 		const position = this.attributes.position;
 		const morphAttributesPosition = this.morphAttributes.position;
-
-		if ( position && position.isGLBufferAttribute ) {
-
-			console.error( 'THREE.BufferGeometry.computeBoundingSphere(): GLBufferAttribute requires a manual bounding sphere. Alternatively set "mesh.frustumCulled" to "false".', this );
-
-			this.boundingSphere.set( new Vector3(), Infinity );
-
-			return;
-
-		}
 
 		if ( position ) {
 

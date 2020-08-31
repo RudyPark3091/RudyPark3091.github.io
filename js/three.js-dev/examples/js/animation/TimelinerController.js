@@ -1,4 +1,4 @@
-console.warn( "THREE.TimelinerController: As part of the transition to ES6 Modules, the files in 'examples/js' were deprecated in May 2020 (r117) and will be deleted in December 2020 (r124). You can find more information about developing using ES6 Modules in https://threejs.org/docs/#manual/en/introduction/Installation." );
+console.warn( "THREE.TimelinerController: As part of the transition to ES6 Modules, the files in 'examples/js' were deprecated in May 2020 (r117) and will be deleted in December 2020 (r124). You can find more information about developing using ES6 Modules in https://threejs.org/docs/index.html#manual/en/introduction/Import-via-modules." );
 /**
  * Controller class for the Timeliner GUI.
  *
@@ -10,6 +10,9 @@ console.warn( "THREE.TimelinerController: As part of the transition to ES6 Modul
  *
  * 		https://github.com/tschw/timeliner_gui
  * 		https://github.com/zz85/timeliner (fork's origin)
+ *
+ * @author tschw
+ *
  */
 
 THREE.TimelinerController = function TimelinerController( scene, trackInfo, onUpdate ) {
@@ -82,7 +85,7 @@ THREE.TimelinerController.prototype = {
 
 		var track = this._tracks[ channelName ],
 			times = track.times,
-			index = Timeliner.binarySearch( times, time ), // eslint-disable-line no-undef
+			index = Timeliner.binarySearch( times, time ),
 			values = track.values,
 			stride = track.getValueSize(),
 			offset = index * stride;
@@ -120,7 +123,7 @@ THREE.TimelinerController.prototype = {
 
 		var track = this._tracks[ channelName ],
 			times = track.times,
-			index = Timeliner.binarySearch( times, time ); // eslint-disable-line no-undef
+			index = Timeliner.binarySearch( times, time );
 
 		// we disallow to remove the keyframe when it is the last one we have,
 		// since the animation system is designed to always produce a defined
@@ -159,7 +162,7 @@ THREE.TimelinerController.prototype = {
 
 		var track = this._tracks[ channelName ],
 			times = track.times,
-			index = Timeliner.binarySearch( times, time ); // eslint-disable-line no-undef
+			index = Timeliner.binarySearch( times, time );
 
 		if ( index >= 0 ) {
 

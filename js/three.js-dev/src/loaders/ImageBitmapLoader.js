@@ -1,5 +1,10 @@
+/**
+ * @author thespite / http://clicktorelease.com/
+ */
+
 import { Cache } from './Cache.js';
 import { Loader } from './Loader.js';
+
 
 function ImageBitmapLoader( manager ) {
 

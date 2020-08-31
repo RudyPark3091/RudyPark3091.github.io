@@ -1,6 +1,7 @@
 import { Vector2 } from '../../math/Vector2.js';
 import { Curve } from '../core/Curve.js';
 
+
 function LineCurve( v1, v2 ) {
 
 	Curve.call( this );

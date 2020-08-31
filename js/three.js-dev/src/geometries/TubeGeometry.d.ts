@@ -5,13 +5,6 @@ import { BufferGeometry } from './../core/BufferGeometry';
 
 export class TubeBufferGeometry extends BufferGeometry {
 
-	/**
-	 * @param path
-	 * @param [tubularSegments=64]
-	 * @param [radius=1]
-	 * @param [radiusSegments=8]
-	 * @param [closed=false]
-	 */
 	constructor(
 		path: Curve<Vector3>,
 		tubularSegments?: number,
@@ -35,13 +28,6 @@ export class TubeBufferGeometry extends BufferGeometry {
 
 export class TubeGeometry extends Geometry {
 
-	/**
-	 * @param path
-	 * @param [tubularSegments=64]
-	 * @param [radius=1]
-	 * @param [radiusSegments=8]
-	 * @param [closed=false]
-	 */
 	constructor(
 		path: Curve<Vector3>,
 		tubularSegments?: number,

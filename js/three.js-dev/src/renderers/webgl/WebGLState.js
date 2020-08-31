@@ -1,3 +1,7 @@
+/**
+ * @author mrdoob / http://mrdoob.com/
+ */
+
 import { NotEqualDepth, GreaterDepth, GreaterEqualDepth, EqualDepth, LessEqualDepth, LessDepth, AlwaysDepth, NeverDepth, CullFaceFront, CullFaceBack, CullFaceNone, DoubleSide, BackSide, CustomBlending, MultiplyBlending, SubtractiveBlending, AdditiveBlending, NoBlending, NormalBlending, AddEquation, SubtractEquation, ReverseSubtractEquation, MinEquation, MaxEquation, ZeroFactor, OneFactor, SrcColorFactor, SrcAlphaFactor, SrcAlphaSaturateFactor, DstColorFactor, DstAlphaFactor, OneMinusSrcColorFactor, OneMinusSrcAlphaFactor, OneMinusDstColorFactor, OneMinusDstAlphaFactor } from '../../constants.js';
 import { Vector4 } from '../../math/Vector4.js';
 
@@ -243,7 +247,7 @@ function WebGLState( gl, extensions, capabilities ) {
 			setFunc: function ( stencilFunc, stencilRef, stencilMask ) {
 
 				if ( currentStencilFunc !== stencilFunc ||
-				     currentStencilRef !== stencilRef ||
+				     currentStencilRef 	!== stencilRef 	||
 				     currentStencilFuncMask !== stencilMask ) {
 
 					gl.stencilFunc( stencilFunc, stencilRef, stencilMask );
@@ -258,7 +262,7 @@ function WebGLState( gl, extensions, capabilities ) {
 
 			setOp: function ( stencilFail, stencilZFail, stencilZPass ) {
 
-				if ( currentStencilFail !== stencilFail ||
+				if ( currentStencilFail	 !== stencilFail 	||
 				     currentStencilZFail !== stencilZFail ||
 				     currentStencilZPass !== stencilZPass ) {
 

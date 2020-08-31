@@ -7,25 +7,10 @@ export class Loader {
 
 	constructor( manager?: LoadingManager );
 
-	/**
-	 * @default 'anonymous'
-	 */
 	crossOrigin: string;
-
-	/**
-	 * @default ''
-	 */
 	path: string;
-
-	/**
-	 * @default ''
-	 */
 	resourcePath: string;
 	manager: LoadingManager;
-
-	/**
-	 * @default {}
-	 */
 	requestHeader: { [header: string]: string };
 
 	/*

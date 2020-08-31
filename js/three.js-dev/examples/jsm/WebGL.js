@@ -1,3 +1,8 @@
+/**
+ * @author alteredq / http://alteredqualia.com/
+ * @author mrdoob / http://mrdoob.com/
+ */
+
 
 
 var WEBGL = {

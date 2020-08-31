@@ -1,3 +1,8 @@
+/**
+ * @author WestLangley / http://github.com/WestLangley
+ *
+ */
+
 
 import { LineSegments2 } from "../lines/LineSegments2.js";
 import { LineGeometry } from "../lines/LineGeometry.js";

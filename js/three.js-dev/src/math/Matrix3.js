@@ -1,26 +1,33 @@
-class Matrix3 {
+/**
+ * @author alteredq / http://alteredqualia.com/
+ * @author WestLangley / http://github.com/WestLangley
+ * @author bhouston / http://clara.io
+ * @author tschw
+ */
 
-	constructor() {
+function Matrix3() {
 
-		Object.defineProperty( this, 'isMatrix3', { value: true } );
+	this.elements = [
 
-		this.elements = [
+		1, 0, 0,
+		0, 1, 0,
+		0, 0, 1
 
-			1, 0, 0,
-			0, 1, 0,
-			0, 0, 1
+	];
 
-		];
+	if ( arguments.length > 0 ) {
 
-		if ( arguments.length > 0 ) {
-
-			console.error( 'THREE.Matrix3: the constructor no longer reads arguments. use .set() instead.' );
-
-		}
+		console.error( 'THREE.Matrix3: the constructor no longer reads arguments. use .set() instead.' );
 
 	}
 
-	set( n11, n12, n13, n21, n22, n23, n31, n32, n33 ) {
+}
+
+Object.assign( Matrix3.prototype, {
+
+	isMatrix3: true,
+
+	set: function ( n11, n12, n13, n21, n22, n23, n31, n32, n33 ) {
 
 		const te = this.elements;
 
@@ -30,9 +37,9 @@ class Matrix3 {
 
 		return this;
 
-	}
+	},
 
-	identity() {
+	identity: function () {
 
 		this.set(
 
@@ -44,15 +51,15 @@ class Matrix3 {
 
 		return this;
 
-	}
+	},
 
-	clone() {
+	clone: function () {
 
 		return new this.constructor().fromArray( this.elements );
 
-	}
+	},
 
-	copy( m ) {
+	copy: function ( m ) {
 
 		const te = this.elements;
 		const me = m.elements;
@@ -63,9 +70,9 @@ class Matrix3 {
 
 		return this;
 
-	}
+	},
 
-	extractBasis( xAxis, yAxis, zAxis ) {
+	extractBasis: function ( xAxis, yAxis, zAxis ) {
 
 		xAxis.setFromMatrix3Column( this, 0 );
 		yAxis.setFromMatrix3Column( this, 1 );
@@ -73,9 +80,9 @@ class Matrix3 {
 
 		return this;
 
-	}
+	},
 
-	setFromMatrix4( m ) {
+	setFromMatrix4: function ( m ) {
 
 		const me = m.elements;
 
@@ -89,21 +96,21 @@ class Matrix3 {
 
 		return this;
 
-	}
+	},
 
-	multiply( m ) {
+	multiply: function ( m ) {
 
 		return this.multiplyMatrices( this, m );
 
-	}
+	},
 
-	premultiply( m ) {
+	premultiply: function ( m ) {
 
 		return this.multiplyMatrices( m, this );
 
-	}
+	},
 
-	multiplyMatrices( a, b ) {
+	multiplyMatrices: function ( a, b ) {
 
 		const ae = a.elements;
 		const be = b.elements;
@@ -131,9 +138,9 @@ class Matrix3 {
 
 		return this;
 
-	}
+	},
 
-	multiplyScalar( s ) {
+	multiplyScalar: function ( s ) {
 
 		const te = this.elements;
 
@@ -143,9 +150,9 @@ class Matrix3 {
 
 		return this;
 
-	}
+	},
 
-	determinant() {
+	determinant: function () {
 
 		const te = this.elements;
 
@@ -155,9 +162,9 @@ class Matrix3 {
 
 		return a * e * i - a * f * h - b * d * i + b * f * g + c * d * h - c * e * g;
 
-	}
+	},
 
-	getInverse( matrix, throwOnDegenerate ) {
+	getInverse: function ( matrix, throwOnDegenerate ) {
 
 		if ( throwOnDegenerate !== undefined ) {
 
@@ -196,9 +203,9 @@ class Matrix3 {
 
 		return this;
 
-	}
+	},
 
-	transpose() {
+	transpose: function () {
 
 		let tmp;
 		const m = this.elements;
@@ -209,15 +216,15 @@ class Matrix3 {
 
 		return this;
 
-	}
+	},
 
-	getNormalMatrix( matrix4 ) {
+	getNormalMatrix: function ( matrix4 ) {
 
 		return this.setFromMatrix4( matrix4 ).getInverse( this ).transpose();
 
-	}
+	},
 
-	transposeIntoArray( r ) {
+	transposeIntoArray: function ( r ) {
 
 		const m = this.elements;
 
@@ -233,9 +240,9 @@ class Matrix3 {
 
 		return this;
 
-	}
+	},
 
-	setUvTransform( tx, ty, sx, sy, rotation, cx, cy ) {
+	setUvTransform: function ( tx, ty, sx, sy, rotation, cx, cy ) {
 
 		const c = Math.cos( rotation );
 		const s = Math.sin( rotation );
@@ -246,9 +253,9 @@ class Matrix3 {
 			0, 0, 1
 		);
 
-	}
+	},
 
-	scale( sx, sy ) {
+	scale: function ( sx, sy ) {
 
 		const te = this.elements;
 
@@ -257,9 +264,9 @@ class Matrix3 {
 
 		return this;
 
-	}
+	},
 
-	rotate( theta ) {
+	rotate: function ( theta ) {
 
 		const c = Math.cos( theta );
 		const s = Math.sin( theta );
@@ -279,9 +286,9 @@ class Matrix3 {
 
 		return this;
 
-	}
+	},
 
-	translate( tx, ty ) {
+	translate: function ( tx, ty ) {
 
 		const te = this.elements;
 
@@ -290,9 +297,9 @@ class Matrix3 {
 
 		return this;
 
-	}
+	},
 
-	equals( matrix ) {
+	equals: function ( matrix ) {
 
 		const te = this.elements;
 		const me = matrix.elements;
@@ -305,9 +312,9 @@ class Matrix3 {
 
 		return true;
 
-	}
+	},
 
-	fromArray( array, offset ) {
+	fromArray: function ( array, offset ) {
 
 		if ( offset === undefined ) offset = 0;
 
@@ -319,9 +326,9 @@ class Matrix3 {
 
 		return this;
 
-	}
+	},
 
-	toArray( array, offset ) {
+	toArray: function ( array, offset ) {
 
 		if ( array === undefined ) array = [];
 		if ( offset === undefined ) offset = 0;
@@ -344,7 +351,7 @@ class Matrix3 {
 
 	}
 
-}
+} );
 
 
 export { Matrix3 };

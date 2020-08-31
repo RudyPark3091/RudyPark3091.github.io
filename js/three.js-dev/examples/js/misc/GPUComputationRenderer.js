@@ -1,5 +1,7 @@
-console.warn( "THREE.GPUComputationRenderer: As part of the transition to ES6 Modules, the files in 'examples/js' were deprecated in May 2020 (r117) and will be deleted in December 2020 (r124). You can find more information about developing using ES6 Modules in https://threejs.org/docs/#manual/en/introduction/Installation." );
+console.warn( "THREE.GPUComputationRenderer: As part of the transition to ES6 Modules, the files in 'examples/js' were deprecated in May 2020 (r117) and will be deleted in December 2020 (r124). You can find more information about developing using ES6 Modules in https://threejs.org/docs/index.html#manual/en/introduction/Import-via-modules." );
 /**
+ * @author yomboprime https://github.com/yomboprime
+ *
  * GPUComputationRenderer, based on SimulationRenderer by zz85
  *
  * The GPUComputationRenderer uses the concept of variables. These variables are RGBA float textures that hold 4 floats
@@ -102,8 +104,6 @@ THREE.GPUComputationRenderer = function ( sizeX, sizeY, renderer ) {
 
 	this.currentTextureIndex = 0;
 
-	var dataType = THREE.FloatType;
-
 	var scene = new THREE.Scene();
 
 	var camera = new THREE.Camera();
@@ -118,13 +118,6 @@ THREE.GPUComputationRenderer = function ( sizeX, sizeY, renderer ) {
 	var mesh = new THREE.Mesh( new THREE.PlaneBufferGeometry( 2, 2 ), passThruShader );
 	scene.add( mesh );
 
-
-	this.setDataType = function ( type ) {
-
-		dataType = type;
-		return this;
-
-	};
 
 	this.addVariable = function ( variableName, computeFragmentShader, initialValueTexture ) {
 
@@ -318,7 +311,8 @@ THREE.GPUComputationRenderer = function ( sizeX, sizeY, renderer ) {
 			minFilter: minFilter,
 			magFilter: magFilter,
 			format: THREE.RGBAFormat,
-			type: dataType,
+			type: ( /(iPad|iPhone|iPod)/g.test( navigator.userAgent ) ) ? THREE.HalfFloatType : THREE.FloatType,
+			stencilBuffer: false,
 			depthBuffer: false
 		} );
 

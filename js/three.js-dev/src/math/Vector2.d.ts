@@ -138,14 +138,7 @@ export class Vector2 implements Vector {
 
 	constructor( x?: number, y?: number );
 
-	/**
-	 * @default 0
-	 */
 	x: number;
-
-	/**
-	 * @default 0
-	 */
 	y: number;
 	width: number;
 	height: number;

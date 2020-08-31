@@ -1,3 +1,7 @@
+/**
+ * @author HypnosNova / https://www.threejs.org.cn/gallery
+ */
+
 import {
 	Vector2
 } from "../../../build/three.module.js";

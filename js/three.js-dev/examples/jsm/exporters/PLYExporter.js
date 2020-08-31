@@ -1,9 +1,5 @@
-import {
-	BufferGeometry,
-	Matrix3,
-	Vector3
-} from "../../../build/three.module.js";
 /**
+ * @author Garrett Johnson / http://gkjohnson.github.io/
  * https://github.com/gkjohnson/ply-exporter-js
  *
  * Usage:
@@ -15,6 +11,12 @@ import {
  * Format Definition:
  * http://paulbourke.net/dataformats/ply/
  */
+
+import {
+	BufferGeometry,
+	Matrix3,
+	Vector3
+} from "../../../build/three.module.js";
 
 var PLYExporter = function () {};
 

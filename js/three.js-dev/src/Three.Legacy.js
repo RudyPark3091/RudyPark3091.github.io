@@ -1,3 +1,7 @@
+/**
+ * @author mrdoob / http://mrdoob.com/
+ */
+
 import { Audio } from './audio/Audio.js';
 import { AudioAnalyser } from './audio/AudioAnalyser.js';
 import { PerspectiveCamera } from './cameras/PerspectiveCamera.js';
@@ -55,7 +59,6 @@ import { TextureLoader } from './loaders/TextureLoader.js';
 import { Material } from './materials/Material.js';
 import { LineBasicMaterial } from './materials/LineBasicMaterial.js';
 import { MeshPhongMaterial } from './materials/MeshPhongMaterial.js';
-import { MeshPhysicalMaterial } from './materials/MeshPhysicalMaterial.js';
 import { PointsMaterial } from './materials/PointsMaterial.js';
 import { ShaderMaterial } from './materials/ShaderMaterial.js';
 import { Box2 } from './math/Box2.js';
@@ -88,7 +91,6 @@ import { WebGLShadowMap } from './renderers/webgl/WebGLShadowMap.js';
 import { ImageUtils } from './extras/ImageUtils.js';
 import { Shape } from './extras/core/Shape.js';
 import { CubeCamera } from './cameras/CubeCamera.js';
-import { Scene } from './scenes/Scene.js';
 
 export { BoxGeometry as CubeGeometry };
 export { MathUtils as Math };
@@ -1468,18 +1470,6 @@ Object.assign( ExtrudeBufferGeometry.prototype, {
 
 //
 
-Object.assign( Scene.prototype, {
-
-	dispose: function () {
-
-		console.error( 'THREE.Scene: .dispose() has been removed.' );
-
-	}
-
-} );
-
-//
-
 Object.defineProperties( Uniform.prototype, {
 
 	dynamic: {
@@ -1582,25 +1572,6 @@ Object.defineProperties( MeshPhongMaterial.prototype, {
 		set: function () {
 
 			console.warn( 'THREE.MeshPhongMaterial: .metal has been removed. Use THREE.MeshStandardMaterial instead' );
-
-		}
-	}
-
-} );
-
-Object.defineProperties( MeshPhysicalMaterial.prototype, {
-
-	transparency: {
-		get: function () {
-
-			console.warn( 'THREE.MeshPhysicalMaterial: .transparency has been renamed to .transmission.' );
-			return this.transmission;
-
-		},
-		set: function ( value ) {
-
-			console.warn( 'THREE.MeshPhysicalMaterial: .transparency has been renamed to .transmission.' );
-			this.transmission = value;
 
 		}
 	}

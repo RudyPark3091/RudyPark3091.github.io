@@ -2,6 +2,8 @@ import { Vector3 } from '../../math/Vector3.js';
 import { Curve } from '../core/Curve.js';
 
 /**
+ * @author zz85 https://github.com/zz85
+ *
  * Centripetal CatmullRom Curve - which is useful for avoiding
  * cusps and self-intersections in non-uniform catmull rom curves.
  * http://www.cemyuksel.com/research/catmullrom_param/catmullrom.pdf
@@ -90,7 +92,7 @@ function CatmullRomCurve3( points, closed, curveType, tension ) {
 	this.points = points || [];
 	this.closed = closed || false;
 	this.curveType = curveType || 'centripetal';
-	this.tension = ( tension !== undefined ) ? tension : 0.5;
+	this.tension = tension || 0.5;
 
 }
 
@@ -121,7 +123,7 @@ CatmullRomCurve3.prototype.getPoint = function ( t, optionalTarget ) {
 
 	}
 
-	let p0, p3; // 4 points (p1 & p2 defined below)
+	let p0, p1, p2, p3; // 4 points
 
 	if ( this.closed || intPoint > 0 ) {
 
@@ -135,8 +137,8 @@ CatmullRomCurve3.prototype.getPoint = function ( t, optionalTarget ) {
 
 	}
 
-	const p1 = points[ intPoint % l ];
-	const p2 = points[ ( intPoint + 1 ) % l ];
+	p1 = points[ intPoint % l ];
+	p2 = points[ ( intPoint + 1 ) % l ];
 
 	if ( this.closed || intPoint + 2 < l ) {
 

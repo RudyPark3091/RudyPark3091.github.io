@@ -15,7 +15,7 @@ export const LinePieces: number;
 export class LineSegments <
 	TGeometry extends Geometry | BufferGeometry = Geometry | BufferGeometry,
 	TMaterial extends Material | Material[] = Material | Material[]
-> extends Line<TGeometry, TMaterial> {
+> extends Line {
 
 	constructor(
 		geometry?: TGeometry,
@@ -23,10 +23,7 @@ export class LineSegments <
 		mode?: number
 	);
 
-	/**
-	 * @default 'LineSegments'
-	 */
-	type: 'LineSegments' | string;
+	type: 'LineSegments';
 	readonly isLineSegments: true;
 
 }

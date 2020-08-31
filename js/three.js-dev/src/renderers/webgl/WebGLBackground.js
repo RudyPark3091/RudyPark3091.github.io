@@ -1,3 +1,7 @@
+/**
+ * @author mrdoob / http://mrdoob.com/
+ */
+
 import { BackSide, FrontSide, CubeUVReflectionMapping } from '../../constants.js';
 import { BoxBufferGeometry } from '../../geometries/BoxGeometry.js';
 import { PlaneBufferGeometry } from '../../geometries/PlaneGeometry.js';
@@ -7,7 +11,7 @@ import { Mesh } from '../../objects/Mesh.js';
 import { ShaderLib } from '../shaders/ShaderLib.js';
 import { cloneUniforms } from '../shaders/UniformsUtils.js';
 
-function WebGLBackground( renderer, cubemaps, state, objects, premultipliedAlpha ) {
+function WebGLBackground( renderer, state, objects, premultipliedAlpha ) {
 
 	const clearColor = new Color( 0x000000 );
 	let clearAlpha = 0;
@@ -22,12 +26,6 @@ function WebGLBackground( renderer, cubemaps, state, objects, premultipliedAlpha
 	function render( renderList, scene, camera, forceClear ) {
 
 		let background = scene.isScene === true ? scene.background : null;
-
-		if ( background && background.isTexture ) {
-
-			background = cubemaps.get( background );
-
-		}
 
 		// Ignore background in AR
 		// TODO: Reconsider this.
@@ -58,7 +56,7 @@ function WebGLBackground( renderer, cubemaps, state, objects, premultipliedAlpha
 
 		}
 
-		if ( background && ( background.isCubeTexture || background.isWebGLCubeRenderTarget || background.isWebGLCubeRenderTargetTexture || background.mapping === CubeUVReflectionMapping ) ) {
+		if ( background && ( background.isCubeTexture || background.isWebGLCubeRenderTarget || background.mapping === CubeUVReflectionMapping ) ) {
 
 			if ( boxMesh === undefined ) {
 
@@ -100,25 +98,19 @@ function WebGLBackground( renderer, cubemaps, state, objects, premultipliedAlpha
 
 			}
 
-			if ( background.isWebGLCubeRenderTarget ) {
+			const texture = background.isWebGLCubeRenderTarget ? background.texture : background;
 
-				// TODO Deprecate
-
-				background = background.texture;
-
-			}
-
-			boxMesh.material.uniforms.envMap.value = background;
-			boxMesh.material.uniforms.flipEnvMap.value = background.isCubeTexture ? - 1 : 1;
+			boxMesh.material.uniforms.envMap.value = texture;
+			boxMesh.material.uniforms.flipEnvMap.value = texture.isCubeTexture ? - 1 : 1;
 
 			if ( currentBackground !== background ||
-				currentBackgroundVersion !== background.version ||
+				currentBackgroundVersion !== texture.version ||
 				currentTonemapping !== renderer.toneMapping ) {
 
 				boxMesh.material.needsUpdate = true;
 
 				currentBackground = background;
-				currentBackgroundVersion = background.version;
+				currentBackgroundVersion = texture.version;
 				currentTonemapping = renderer.toneMapping;
 
 			}

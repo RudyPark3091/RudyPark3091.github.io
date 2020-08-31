@@ -1,6 +1,10 @@
 import { MathUtils } from '../math/MathUtils.js';
 import { StaticDrawUsage } from '../constants.js';
 
+/**
+ * @author benaadams / https://twitter.com/ben_a_adams
+ */
+
 function InterleavedBuffer( array, stride ) {
 
 	this.array = array;

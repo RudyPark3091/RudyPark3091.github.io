@@ -1,3 +1,9 @@
+/**
+ * @author tschw
+ * @author Ben Houston / http://clara.io/
+ * @author David Sarno / http://lighthaus.us/
+ */
+
 import { Quaternion } from '../math/Quaternion.js';
 import { AdditiveAnimationBlendMode } from '../constants.js';
 
@@ -252,30 +258,13 @@ const AnimationUtils = {
 			const targetTrack = targetClip.tracks.find( function ( track ) {
 
 				return track.name === referenceTrack.name
-					&& track.ValueTypeName === referenceTrackType;
+				&& track.ValueTypeName === referenceTrackType;
 
 			} );
 
 			if ( targetTrack === undefined ) continue;
 
-			let referenceOffset = 0;
-			const referenceValueSize = referenceTrack.getValueSize();
-
-			if ( referenceTrack.createInterpolant.isInterpolantFactoryMethodGLTFCubicSpline ) {
-
-				referenceOffset = referenceValueSize / 3;
-
-			}
-
-			let targetOffset = 0;
-			const targetValueSize = targetTrack.getValueSize();
-
-			if ( targetTrack.createInterpolant.isInterpolantFactoryMethodGLTFCubicSpline ) {
-
-				targetOffset = targetValueSize / 3;
-
-			}
-
+			const valueSize = referenceTrack.getValueSize();
 			const lastIndex = referenceTrack.times.length - 1;
 			let referenceValue;
 
@@ -283,32 +272,32 @@ const AnimationUtils = {
 			if ( referenceTime <= referenceTrack.times[ 0 ] ) {
 
 				// Reference frame is earlier than the first keyframe, so just use the first keyframe
-				const startIndex = referenceOffset;
-				const endIndex = referenceValueSize - referenceOffset;
-				referenceValue = AnimationUtils.arraySlice( referenceTrack.values, startIndex, endIndex );
+				referenceValue = AnimationUtils.arraySlice( referenceTrack.values, 0, referenceTrack.valueSize );
 
 			} else if ( referenceTime >= referenceTrack.times[ lastIndex ] ) {
 
 				// Reference frame is after the last keyframe, so just use the last keyframe
-				const startIndex = lastIndex * referenceValueSize + referenceOffset;
-				const endIndex = startIndex + referenceValueSize - referenceOffset;
-				referenceValue = AnimationUtils.arraySlice( referenceTrack.values, startIndex, endIndex );
+				const startIndex = lastIndex * valueSize;
+				referenceValue = AnimationUtils.arraySlice( referenceTrack.values, startIndex );
 
 			} else {
 
 				// Interpolate to the reference value
 				const interpolant = referenceTrack.createInterpolant();
-				const startIndex = referenceOffset;
-				const endIndex = referenceValueSize - referenceOffset;
 				interpolant.evaluate( referenceTime );
-				referenceValue = AnimationUtils.arraySlice( interpolant.resultBuffer, startIndex, endIndex );
+				referenceValue = interpolant.resultBuffer;
 
 			}
 
 			// Conjugate the quaternion
 			if ( referenceTrackType === 'quaternion' ) {
 
-				const referenceQuat = new Quaternion().fromArray( referenceValue ).normalize().conjugate();
+				const referenceQuat = new Quaternion(
+					referenceValue[ 0 ],
+					referenceValue[ 1 ],
+					referenceValue[ 2 ],
+					referenceValue[ 3 ]
+				).normalize().conjugate();
 				referenceQuat.toArray( referenceValue );
 
 			}
@@ -318,7 +307,7 @@ const AnimationUtils = {
 			const numTimes = targetTrack.times.length;
 			for ( let j = 0; j < numTimes; ++ j ) {
 
-				const valueStart = j * targetValueSize + targetOffset;
+				const valueStart = j * valueSize;
 
 				if ( referenceTrackType === 'quaternion' ) {
 
@@ -334,10 +323,8 @@ const AnimationUtils = {
 
 				} else {
 
-					const valueEnd = targetValueSize - targetOffset * 2;
-
 					// Subtract each value for all other numeric track types
-					for ( let k = 0; k < valueEnd; ++ k ) {
+					for ( let k = 0; k < valueSize; ++ k ) {
 
 						targetTrack.values[ valueStart + k ] -= referenceValue[ k ];
 

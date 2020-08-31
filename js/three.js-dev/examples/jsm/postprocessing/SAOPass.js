@@ -1,3 +1,8 @@
+/**
+ * @author ludobaka / ludobaka.github.io
+ * SAO implementation inspired from bhouston previous SAO work
+ */
+
 import {
 	AddEquation,
 	Color,
@@ -25,9 +30,6 @@ import { DepthLimitedBlurShader } from "../shaders/DepthLimitedBlurShader.js";
 import { BlurShaderUtils } from "../shaders/DepthLimitedBlurShader.js";
 import { CopyShader } from "../shaders/CopyShader.js";
 import { UnpackDepthRGBAShader } from "../shaders/UnpackDepthRGBAShader.js";
-/**
- * SAO implementation inspired from bhouston previous SAO work
- */
 
 var SAOPass = function ( scene, camera, depthTexture, useNormals, resolution ) {
 

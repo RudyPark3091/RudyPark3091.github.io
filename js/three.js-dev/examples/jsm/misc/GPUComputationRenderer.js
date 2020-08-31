@@ -1,17 +1,6 @@
-import {
-	Camera,
-	ClampToEdgeWrapping,
-	DataTexture,
-	FloatType,
-	Mesh,
-	NearestFilter,
-	PlaneBufferGeometry,
-	RGBAFormat,
-	Scene,
-	ShaderMaterial,
-	WebGLRenderTarget
-} from "../../../build/three.module.js";
 /**
+ * @author yomboprime https://github.com/yomboprime
+ *
  * GPUComputationRenderer, based on SimulationRenderer by zz85
  *
  * The GPUComputationRenderer uses the concept of variables. These variables are RGBA float textures that hold 4 floats
@@ -108,13 +97,26 @@ import {
  * @param {WebGLRenderer} renderer The renderer
   */
 
+import {
+	Camera,
+	ClampToEdgeWrapping,
+	DataTexture,
+	FloatType,
+	HalfFloatType,
+	Mesh,
+	NearestFilter,
+	PlaneBufferGeometry,
+	RGBAFormat,
+	Scene,
+	ShaderMaterial,
+	WebGLRenderTarget
+} from "../../../build/three.module.js";
+
 var GPUComputationRenderer = function ( sizeX, sizeY, renderer ) {
 
 	this.variables = [];
 
 	this.currentTextureIndex = 0;
-
-	var dataType = FloatType;
 
 	var scene = new Scene();
 
@@ -130,13 +132,6 @@ var GPUComputationRenderer = function ( sizeX, sizeY, renderer ) {
 	var mesh = new Mesh( new PlaneBufferGeometry( 2, 2 ), passThruShader );
 	scene.add( mesh );
 
-
-	this.setDataType = function ( type ) {
-
-		dataType = type;
-		return this;
-
-	};
 
 	this.addVariable = function ( variableName, computeFragmentShader, initialValueTexture ) {
 
@@ -330,7 +325,8 @@ var GPUComputationRenderer = function ( sizeX, sizeY, renderer ) {
 			minFilter: minFilter,
 			magFilter: magFilter,
 			format: RGBAFormat,
-			type: dataType,
+			type: ( /(iPad|iPhone|iPod)/g.test( navigator.userAgent ) ) ? HalfFloatType : FloatType,
+			stencilBuffer: false,
 			depthBuffer: false
 		} );
 

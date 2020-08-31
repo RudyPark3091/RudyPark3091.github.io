@@ -1,3 +1,7 @@
+/**
+ * @author sunag / http://www.sunag.com.br/
+ */
+
 import { TempNode } from '../core/TempNode.js';
 
 function CondNode( a, b, op, ifNode, elseNode ) {

@@ -1,3 +1,7 @@
+/**
+ * @author Don McCurdy / https://www.donmccurdy.com
+ */
+
 import {
 	BufferAttribute,
 	BufferGeometry,
@@ -89,7 +93,6 @@ DRACOLoader.prototype = Object.assign( Object.create( Loader.prototype ), {
 
 		loader.setPath( this.path );
 		loader.setResponseType( 'arraybuffer' );
-		loader.setRequestHeader( this.requestHeader );
 
 		if ( this.crossOrigin === 'use-credentials' ) {
 
@@ -432,7 +435,7 @@ DRACOLoader.DRACOWorker = function () {
 
 					};
 
-					DracoDecoderModule( decoderConfig ); // eslint-disable-line no-undef
+					DracoDecoderModule( decoderConfig );
 
 				} );
 				break;

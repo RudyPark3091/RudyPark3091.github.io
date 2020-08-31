@@ -1,18 +1,6 @@
-import {
-	BufferAttribute,
-	BufferGeometry,
-	Color,
-	Line,
-	LineBasicMaterial,
-	Matrix4,
-	Mesh,
-	MeshBasicMaterial,
-	Object3D,
-	Quaternion,
-	SphereBufferGeometry,
-	Vector3
-} from "../../../build/three.module.js";
 /**
+ * @author takahiro / https://github.com/takahirox
+ *
  * CCD Algorithm
  *  - https://sites.google.com/site/auraliusproject/ccd-algorithm
  *
@@ -31,6 +19,21 @@ import {
  *	maxAngle: 1.0,
  * } ];
  */
+
+import {
+	BufferAttribute,
+	BufferGeometry,
+	Color,
+	Line,
+	LineBasicMaterial,
+	Matrix4,
+	Mesh,
+	MeshBasicMaterial,
+	Object3D,
+	Quaternion,
+	SphereBufferGeometry,
+	Vector3
+} from "../../../build/three.module.js";
 
 var CCDIKSolver = ( function () {
 

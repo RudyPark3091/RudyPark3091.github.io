@@ -1,3 +1,7 @@
+/**
+ * @author Mugen87 / https://github.com/Mugen87
+ */
+
 import {
 	BackSide,
 	BoxBufferGeometry,
@@ -66,9 +70,8 @@ var VRMLLoader = ( function () {
 
 			var path = ( scope.path === '' ) ? LoaderUtils.extractUrlBase( url ) : scope.path;
 
-			var loader = new FileLoader( scope.manager );
+			var loader = new FileLoader( this.manager );
 			loader.setPath( scope.path );
-			loader.setRequestHeader( scope.requestHeader );
 			loader.load( url, function ( text ) {
 
 				try {

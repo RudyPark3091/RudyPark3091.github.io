@@ -56,6 +56,10 @@ import { FileLoader } from './FileLoader.js';
 import * as Geometries from '../geometries/Geometries.js';
 import * as Curves from '../extras/curves/Curves.js';
 
+/**
+ * @author mrdoob / http://mrdoob.com/
+ */
+
 function ObjectLoader( manager ) {
 
 	Loader.call( this, manager );
@@ -75,7 +79,6 @@ ObjectLoader.prototype = Object.assign( Object.create( Loader.prototype ), {
 
 		const loader = new FileLoader( scope.manager );
 		loader.setPath( this.path );
-		loader.setRequestHeader( this.requestHeader );
 		loader.load( url, function ( text ) {
 
 			let json = null;
