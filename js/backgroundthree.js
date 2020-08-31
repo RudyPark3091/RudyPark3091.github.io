@@ -98,7 +98,6 @@ function init() {
       new THREE.LineBasicMaterial({ color: 0xff0000 })
     );
     scene.add(plane2);
-    console.log('ok');
   }, 100);
 
   // rendering
