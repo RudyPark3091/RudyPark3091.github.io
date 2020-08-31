@@ -3,6 +3,10 @@
   border: 5px solid #ffffff;
 }
 
+#canvas {
+  z-index: -1;
+}
+
 #main-title {
   font-size: var(--f);
   font-family: 'Squada One';

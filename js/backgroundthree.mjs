@@ -1,8 +1,8 @@
 import * as THREE from "https://rudypark3091.github.io/js/three.js-dev/build/three.min.js";
 import { OrbitControls } from "https://rudypark3091.github.io/js/three.js-dev/examples/jsm/controls/OrbitControls.js";
 import { EffectComposer } from "https://rudypark3091.github.io/js/three.js-dev/examples/jsm/postprocessing/EffectComposer.js";
-import { RenderPass } from "https://rudypark3091.github.io/js/three.js-devr115/examples/jsm/postprocessing/RenderPass.js";
-import { GlitchPass } from "https://rudypark3091.github.io/js/three.js-devr115/examples/jsm/postprocessing/GlitchPass.js";
+import { RenderPass } from "https://rudypark3091.github.io/js/three.js-dev/examples/jsm/postprocessing/RenderPass.js";
+import { GlitchPass } from "https://rudypark3091.github.io/js/three.js-dev/examples/jsm/postprocessing/GlitchPass.js";
 
 const WIDTH = window.innerWidth;
 const HEIGHT = window.innerHeight;
