@@ -1,8 +1,8 @@
-import * as THREE from "https://threejsfundamentals.org/threejs/resources/threejs/r115/build/three.module.js";
-import { OrbitControls } from "https://threejsfundamentals.org/threejs/resources/threejs/r115/examples/jsm/controls/OrbitControls.js";
-import { EffectComposer } from "https://threejsfundamentals.org/threejs/resources/threejs/r115/examples/jsm/postprocessing/EffectComposer.js";
-import { RenderPass } from "https://threejsfundamentals.org/threejs/resources/threejs/r115/examples/jsm/postprocessing/RenderPass.js";
-import { GlitchPass } from "https://threejsfundamentals.org/threejs/resources/threejs/r115/examples/jsm/postprocessing/GlitchPass.js";
+import * as THREE from "https://rudypark3091.github.io/js/three.js-dev/build/three.min.js";
+import { OrbitControls } from "https://rudypark3091.github.io/js/three.js-dev/examples/jsm/controls/OrbitControls.js";
+import { EffectComposer } from "https://rudypark3091.github.io/js/three.js-dev/examples/jsm/postprocessing/EffectComposer.js";
+import { RenderPass } from "https://rudypark3091.github.io/js/three.js-devr115/examples/jsm/postprocessing/RenderPass.js";
+import { GlitchPass } from "https://rudypark3091.github.io/js/three.js-devr115/examples/jsm/postprocessing/GlitchPass.js";
 
 const WIDTH = window.innerWidth;
 const HEIGHT = window.innerHeight;
@@ -80,18 +80,6 @@ function init() {
   const renderer = initRenderer();
   const controls = new OrbitControls(camera, renderer.domElement);
   controls.autoRotate = true;
-
-  // plane & axes helper
-  const geometry = new THREE.PlaneGeometry(10, 10);
-  const material = new THREE.MeshBasicMaterial({
-    color: 0xffffff,
-    side: THREE.DoubleSide
-  });
-  const plane = new THREE.Mesh(geometry, material);
-  plane.rotateX(-Math.PI / 2);
-  scene.add(plane);
-  const axesHelper = new THREE.AxesHelper(5);
-  scene.add(axesHelper);
 
   // meshes
   const vertices = pushVertices();
