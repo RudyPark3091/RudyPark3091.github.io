@@ -69,3 +69,16 @@
     overflow-y: auto;
   }
 }
+
+@media screen and (max-width: 1000px) {
+  #content {
+    grid-template-areas:
+      "post"
+      "list";
+  }
+
+  #post {
+    height: 90vh;
+    overflow-y: auto;
+  }
+}
