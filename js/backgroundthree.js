@@ -82,25 +82,23 @@ function init() {
   );
   scene.add(plane2);
 
-  setInterval(() => {
-    let flag = true;
+  const bgLoad = setInterval(() => {
     vertices.forEach((vertex) => {
       if (vertex.x <= 500) {
         vertex.x *= 1.1;
         vertex.z *= 1.1;
       } else {
-        flag = false;
+        clearInterval(bgLoad);
       }
     });
-    
-    if (flag) {
-      const geo = new THREE.BufferGeometry().setFromPoints(vertices);
-      let plane2 = new THREE.Line(
-        geo,
-        new THREE.LineBasicMaterial({ color: 0xff0000 })
-      );
-      scene.add(plane2);
-    }
+  
+    const geo = new THREE.BufferGeometry().setFromPoints(vertices);
+    let plane2 = new THREE.Line(
+      geo,
+      new THREE.LineBasicMaterial({ color: 0xff0000 })
+    );
+    scene.add(plane2);
+    console.log('ok');
   }, 100);
 
   // rendering
