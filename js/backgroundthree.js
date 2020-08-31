@@ -1,9 +1,3 @@
-import * as THREE from "https://rudypark3091.github.io/js/three.js-dev/build/three.min.js";
-import { OrbitControls } from "https://rudypark3091.github.io/js/three.js-dev/examples/jsm/controls/OrbitControls.js";
-import { EffectComposer } from "https://rudypark3091.github.io/js/three.js-dev/examples/jsm/postprocessing/EffectComposer.js";
-import { RenderPass } from "https://rudypark3091.github.io/js/three.js-dev/examples/jsm/postprocessing/RenderPass.js";
-import { GlitchPass } from "https://rudypark3091.github.io/js/three.js-dev/examples/jsm/postprocessing/GlitchPass.js";
-
 const WIDTH = window.innerWidth;
 const HEIGHT = window.innerHeight;
 
@@ -25,7 +19,7 @@ function initCamera() {
   const aspect = WIDTH / HEIGHT;
   const cam = new THREE.PerspectiveCamera(60, WIDTH / HEIGHT, 1, 1000);
   //const cam = new THREE.OrthographicCamera(frustumSize * aspect / - 2, frustumSize * aspect / 2, frustumSize / 2, frustumSize / - 2, .1, 1000);
-  cam.position.set(20, 10, 10);
+  cam.position.set(0, 10, 10);
 
   return cam;
 }
@@ -43,11 +37,11 @@ function initRenderer() {
 
 function pushVertices() {
   const verticeArray = [];
-  verticeArray.push(new THREE.Vector3(0.1, 1, 0));
-  verticeArray.push(new THREE.Vector3(0, 1, -0.1));
-  verticeArray.push(new THREE.Vector3(-0.1, 1, 0));
-  verticeArray.push(new THREE.Vector3(0, 1, 0.1));
-  verticeArray.push(new THREE.Vector3(0.1, 1, 0));
+  verticeArray.push(new THREE.Vector3(1, 1, 0));
+  verticeArray.push(new THREE.Vector3(0, 1, -1));
+  verticeArray.push(new THREE.Vector3(-1, 1, 0));
+  verticeArray.push(new THREE.Vector3(0, 1, 1));
+  verticeArray.push(new THREE.Vector3(1, 1, 0));
 
   return verticeArray;
 }
@@ -78,8 +72,6 @@ function init() {
   const light = initLight();
   const camera = initCamera();
   const renderer = initRenderer();
-  const controls = new OrbitControls(camera, renderer.domElement);
-  controls.autoRotate = true;
 
   // meshes
   const vertices = pushVertices();
@@ -91,17 +83,25 @@ function init() {
   scene.add(plane2);
 
   setInterval(() => {
+    let flag = true;
     vertices.forEach((vertex) => {
-      vertex.x *= 1.1;
-      vertex.z *= 1.1;
+      if (vertex.x <= 500) {
+        vertex.x *= 1.1;
+        vertex.z *= 1.1;
+      } else {
+        flag = false;
+      }
     });
-    const geo = new THREE.BufferGeometry().setFromPoints(vertices);
-    let plane2 = new THREE.Line(
-      geo,
-      new THREE.LineBasicMaterial({ color: 0xff0000 })
-    );
-    scene.add(plane2);
-  }, 2000);
+    
+    if (flag) {
+      const geo = new THREE.BufferGeometry().setFromPoints(vertices);
+      let plane2 = new THREE.Line(
+        geo,
+        new THREE.LineBasicMaterial({ color: 0xff0000 })
+      );
+      scene.add(plane2);
+    }
+  }, 100);
 
   // rendering
   document.querySelector("#canvas").appendChild(renderer.domElement);
@@ -115,21 +115,14 @@ function init() {
     renderer.setSize(window.innerWidth, window.innerHeight);
   };
 
-  // postprocessing
-  const composer = new EffectComposer(renderer);
-  composer.addPass(new RenderPass(scene, camera));
-
-  const glitchPass = new GlitchPass();
-  composer.addPass(glitchPass);
 
   // animate function
   function animate() {
     requestAnimationFrame(animate);
-    controls.update();
     render();
   }
   function render() {
-    composer.render(scene, camera);
+    renderer.render(scene, camera);
   }
 
   animate();
