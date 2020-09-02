@@ -14,9 +14,23 @@
   z-index: 2;
 }
 
-#navbar-navigation {
-  margin-left: 30px;
+#navbar-menu {
+  width: 100%;
+  height: 5vh;
+  font-size: calc(var(--f) * 0.2);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--color-primary);
+}
+
+#navbar-menu > * {
+  margin-right: 15px;
   cursor: pointer;
+  transition: color 0.1s ease-in-out;
+}
+#navbar-menu > *:hover {
+  color: var(--color-secondary);
 }
 
 #logo {
@@ -30,11 +44,11 @@
 
 #profile {
   width: 300px;
-  height: 500px;
+  height: 450px;
   margin: 10px;
   padding: 10px;
   position: fixed;
-  top: 15vh;
+  top: 20vh;
   border: 1px solid var(--color-primary);
   /* background-color: var(--color-primary); */
 }
@@ -56,8 +70,7 @@
   padding: 10px;
   display: flex;
   flex-direction: column;
-  background-color: #e74d3c5a;
-  border: 2px solid #e74d3c7a;
+  background-color: #e74d3c0a;
 }
 
 .container-post-item .post-item-title {
