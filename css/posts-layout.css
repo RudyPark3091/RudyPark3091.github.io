@@ -1,3 +1,7 @@
+#canvas {
+  filter: blur(3px);
+}
+
 #navbar {
   --bg: var(--color-secondary);
   width: 100%;
