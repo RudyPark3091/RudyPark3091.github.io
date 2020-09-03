@@ -24,6 +24,7 @@ body {
   font-style: italic;
   transition: all .1s ease-in-out;
   overflow-x: hidden;
+  animation: fadein 0.3s ease-in-out;
 }
 
 html > * {
@@ -40,6 +41,14 @@ html > * {
 }
 ::-webkit-scrollbar-thumb {
   background-color: var(--color-primary);
+}
+
+.hidden {
+  display: none;
+}
+
+.blackout {
+  filter: brightness(0);
 }
 
 .flex-center {
@@ -74,4 +83,17 @@ a {
 
 .font-secondary {
   font-family: "Squada One";
+}
+
+#canvas {
+  filter: blur(3px);
+}
+
+@keyframes fadein {
+  from {
+    filter: brightness(0)
+  }
+  to {
+    filter: brightness(1);
+  }
 }
