@@ -8,6 +8,5 @@ elements.forEach( element => {
 })
 
 document.onclick = (e) => {
-  e.preventDefault();
   document.body.style.filter = "blur(0px)";
 }
