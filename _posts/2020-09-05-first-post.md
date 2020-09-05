@@ -18,3 +18,6 @@ print ops["+"](1,1) # prints 2
 ...
 ```
 이쯤되면 파이썬은 PS를 위해 만들어진 언어라고 할 수 있을 정도로 간편하다.
+
+reference:  
+https://stackoverflow.com/questions/1740726/turn-string-into-operator
