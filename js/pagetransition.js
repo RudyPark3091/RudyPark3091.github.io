@@ -7,6 +7,6 @@ links.forEach( link => {
     document.body.classList.add("blackout");
     setTimeout( () => {
       location.href = target.getAttribute("href");
-    }, 300);
+    }, 100);
   }
 });
