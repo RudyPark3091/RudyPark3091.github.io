@@ -53,6 +53,10 @@ const element = new JSDOM(
 지금까지 정리한 내용으로 간단하게 빌보드 차트 탑100 리스트를 크롤링(이라고 하기도 민망하지만)해오는 api 서버를 디자인해보았다.  
 [https://github.com/RudyPark3091/billboardTop100Api]
 
+### p.s
+JSDOM 의 경우 fetch response.text() 에서 받아온 html을 한번밖에 파싱하지 못다.  
+아마 JSDOM 은 htmlElement 가 아닌 다른 Object Type 을 반환하기 때문일 것이다.
+
 [node-fetch]: https://www.npmjs.com/package/node-fetch
 [jsdom]: https://www.npmjs.com/package/jsdom
 [여러가지 방법]: https://stackoverflow.com/questions/11398419/trying-to-use-the-domparser-with-node-js/55668667
