@@ -124,6 +124,8 @@
   :root {
     --f: calc(var(--f-size) * 1.5vmin);
   }
+
+
   #post {
     margin-left: 0px;
     width: 100%;
@@ -135,7 +137,7 @@
   }
 
   .container-post-item .post-item-title {
-    font-size: calc(var(--f) * 0.4);
+    font-size: calc(var(--f) * 0.25);
   }
   .container-post-item .post-item-peek {
     font-size: calc(var(--f) * 0.2);
