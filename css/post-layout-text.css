@@ -27,6 +27,7 @@
 #text-title {
   grid-area: title;
   font-size: calc(var(--f) * 0.4);
+  font-weight: bolder;
   border-bottom: 3px double #fff;
 }
 
@@ -61,8 +62,13 @@
     display: none;
   }
 
+  #text-areas {
+    display: flex;
+    flex-direction: column;
+  }
+
   #text-title {
-    font-size: calc(var(--f) * 0.4);
+    font-size: calc(var(--f) * 0.35);
   }
   #text-date {
     font-size: calc(var(--f) * 0.2);
