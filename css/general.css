@@ -1,5 +1,9 @@
 @import url(https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap);
 @import url(https://fonts.googleapis.com/css2?family=Squada+One&display=swap);
+@font-face {
+  font-family: "goyangR";
+  src: url('../assets/fonts/goyangR.TTF') format("truetype");
+}
 
 :root {
   --f-size: 15;
@@ -78,11 +82,20 @@ a {
 }
 
 .font-primary {
-  font-family: "Bebas Neue";
+  font-family: "Bebas Neue", "goyangR";
 }
 
 .font-secondary {
-  font-family: "Squada One";
+  font-family: "Squada One", "goyangR";
+}
+
+.font-korean {
+  font-family: "goyangR";
+  font-weight: 900;
+}
+
+.font-normal {
+  font-style: normal;
 }
 
 #canvas {
