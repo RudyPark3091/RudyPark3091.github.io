@@ -71,7 +71,7 @@
     font-size: calc(var(--f) * 0.35);
   }
   #text-date {
-    font-size: calc(var(--f) * 0.2);
+    font-size: calc(var(--f) * 0.15);
   }
   #text-content {
     font-size: calc(var(--f) * 0.2);
