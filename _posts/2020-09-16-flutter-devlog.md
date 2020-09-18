@@ -12,9 +12,9 @@ categories: flutter
 여기서 Android toolchain 을 업데이트하라는데 어디서 하는지 몰라서 꽤 애를 먹었다.  
   Android Studio 툴바의 Tools에서 SDK 매니저와 AVD 매니저는 앞으로도 많이 사용할 것 같으니 알아둬야겠다. 
 여튼, [이 페이지]에서 시키는대로 Android Emulator를 키고 Run을 눌렀더니 이상없이 잘 동작하는것을 확인했다. 
-flutter는 Hot Reload를 지원해 편안하게 개발할 수 있을 것 같다. flutter는 또한 Dart 언어로 작성되어있으니, 차차 이에 대해서도 공부해야되겠다.  
-
-
+flutter는 Hot Reload를 지원해 편안하게 개발할 수 있을 것 같다. flutter는 또한 Dart 언어로 작성되어있으니, 차차 이에 대해서도 공부해야겠다.  
+   
+   
 ## Dart 문법 기초
   flutter기반 애플리케이션은 역시 구글이 개발한 Dart라는 언어로 작성한다. 이는 자바스크립트를 대체할 목적으로 만들어졌지만 아직은 달성하지 못한 것으로 보인다. 
 지금까지 flutter 애플리케이션을 작성해본 바로는, Dart는 객체지향적이며 명시적 타입 선언을 지원해 타입스크립트가 아닌 자바스크립트보다 안정적인 느낌을 받을 수 있었다.   
@@ -55,6 +55,28 @@ class RandomWordsState extends State<RandomWords> {
   // ···
 }
 ```
+* 클래스 선언시 멤버변수에 this 키워드를 붙여 간단하게 생성자를 선언할 수 있다.
+``` dart
+class Student {
+  String name;
+  int grade;
+  
+  Student(this.name, this.grade);
+}
+```
+물론 자바에서 하던것처럼 이런 생성자도 선언할 수 있다.
+``` dart
+class Student {
+  String name;
+  int grade;
+  
+  Student(String name, int grade) {
+    this.name = name;
+    this.grade = grade;
+  }
+}
+```
+
   
   
 reference:  
