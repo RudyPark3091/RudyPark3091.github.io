@@ -37,6 +37,11 @@ var image = {
 for (int month = 1; month <= 12; month++) {
   print(month);
 }
+
+for (var month in monthList) {
+  print(month);
+}
+
 ```
  * 명시적 타입 선언을 지원한다.
 ``` dart
