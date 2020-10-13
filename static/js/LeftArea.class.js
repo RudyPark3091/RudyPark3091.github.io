@@ -1,9 +1,9 @@
 class LeftArea {
   constuctor(context) {
     this.context = {
-      home: "Home",
-      memo: "Memos",
-      article: "Articles"
+      "home": "Home",
+      "memo": "Memos",
+      "article": "Articles"
     };
     this.context[context] = "&lt" + this.context[context] + "&gt";
 
