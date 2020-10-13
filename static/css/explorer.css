@@ -35,7 +35,7 @@
   #explorer {
     margin-top: 20vh;
     height: 60vh;
-    grid-template-columns: repeat(auto-fill, minmax(120px, 33%));
-    grid-template-rows: repeat(auto-fill, minmax(120px, 33%));
+    grid-template-columns: repeat(auto-fill, minmax(120px, 25%));
+    grid-template-rows: repeat(auto-fill, minmax(120px, 25%));
   }
 }
