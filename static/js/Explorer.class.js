@@ -4,7 +4,7 @@ class Explorer {
     this.htmlElement = "";
     this.data = {};
     this.context = context;
-    this.render(context);
+    this.render(this.context);
   }
 
   render(context) {
@@ -28,30 +28,31 @@ class Explorer {
       })
       .then(() => {
         const folders = document.querySelectorAll(".explorer-route");
+
         folders.forEach((folder) => {
-          folder.onclick = this.toPostsList;
-        });
+          folder.onclick = (e) => {
+          let target = e.target;
+          if (target.dataset.category === undefined) {
+            target = target.parentNode;
+          }
+          const category = target.dataset.category;
+
+          this.htmlElement = "";
+          this.data.records[category].forEach((item) => {
+            this.htmlElement += `
+              <svg width="100px" height="100px" fill="#bbbbbb" class="explorer-route"> 
+                <path d="M0 0 L50 0 L50 10 L90 10 L90 80 L0 80 Z" />
+                <text x="50%" y="95px" text-anchor="middle" fill="#000">${item.title}</text>
+              </svg>
+            `
+          });
+          document.querySelector("#explorer").innerHTML = this.htmlElement;
+          }
+        })
       })
       .catch((err) => {
         console.error(err);
       });
   }
 
-  toPostsList(e) {
-    let target = e.target;
-    if (target.dataset.category === undefined) {
-      target = target.parentNode;
-    }
-    const category = target.dataset.category;
-    this.htmlElement = "";
-    this.data.records[category].forEach((item) => {
-      this.htmlElement += `
-        <svg width="100px" height="100px" fill="#bbbbbb" class="explorer-route"> 
-          <path d="M0 0 L50 0 L50 10 L90 10 L90 80 L0 80 Z" />
-          <text x="50%" y="95px" text-anchor="middle" fill="#000">${item.title}</text>
-        </svg>
-      `
-    });
-    document.querySelector("#explorer").innerHTML = this.htmlElement;
-  }
 }
