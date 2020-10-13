@@ -3,7 +3,7 @@ class Grid {
     this.context = context;
 
     document.body.innerHTML += `
-      <div id="grid-body" className="fade-in">
+      <div id="grid-body" class="fade-in">
         ${this.generateItem("hello", "2020-10-14", "o")}
       </div>
     `;
@@ -11,9 +11,9 @@ class Grid {
 
   generateItem(title, date, url) {
     return `
-      <div className="grid-item">
-        <div className="grid-item-title">${title}</div>
-        <div className="grid-item-date">${date}</div>
+      <div class="grid-item">
+        <div class="grid-item-title">${title}</div>
+        <div class="grid-item-date">${date}</div>
       </div>
     `;
   }
