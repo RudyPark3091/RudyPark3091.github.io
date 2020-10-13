@@ -14,6 +14,6 @@ class LeftArea {
         ${this.link.makeLink(this.context.memo, "/memo")}
         ${this.link.makeLink(this.context.article, "/article")}
       </div>
-    `
+    `;
   }
 }
