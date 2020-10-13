@@ -1,0 +1,41 @@
+#explorer {
+  margin-left: 20vw;
+  margin-top: 10vh;
+  width: 60vw;
+  height: 80vh;
+  background-color: #ffffff;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(120px, 16.6%));
+  grid-template-rows: repeat(auto-fill, minmax(120px, 20%));
+  overflow: scroll;
+}
+
+#explorer::-webkit-scrollbar {
+  width: 5px;
+  height: 0px;
+}
+
+#explorer::-webkit-scrollbar-track {
+  background-color: #ffffff;
+}
+
+#explorer::-webkit-scrollbar-thumb {
+  background-color: #888888;
+}
+
+#explorer > * {
+  margin: 20px;
+}
+
+.explorer-route {
+  cursor: pointer;
+}
+
+@media screen and (max-width: 1000px) {
+  #explorer {
+    margin-top: 20vh;
+    height: 60vh;
+    grid-template-columns: repeat(auto-fill, minmax(120px, 33%));
+    grid-template-rows: repeat(auto-fill, minmax(120px, 33%));
+  }
+}
