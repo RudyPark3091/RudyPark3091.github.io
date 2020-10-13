@@ -1,0 +1,43 @@
+@import url("https://fonts.googleapis.com/css2?family=Squada+One&display=swap");
+@import url("//cdn.jsdelivr.net/npm/font-kopub@1.0/kopubdotum.min.css");
+
+:root {
+  --hello: 1rem;
+}
+
+html,
+body {
+  margin: 0px;
+  font-weight: 400;
+  font-family: "KoPub Dotum";
+  background-color: #bbbbbb;
+}
+
+.dontcopy {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.fadein {
+  animation: fadein 0.5s ease-in-out;
+}
+
+a {
+  text-decoration: none;
+  color: coral;
+}
+
+@keyframes fadein {
+  from {
+    transform: translateY(30px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0px);
+    opacity: 1;
+  }
+}
