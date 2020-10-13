@@ -1,32 +1,27 @@
 class LeftArea {
-  constuctor(context) {
-    this.context = {
-      "home": "Home",
-      "memo": "Memos",
-      "article": "Articles"
+  constructor(context, target) {
+    this.contextObj = {
+      home: "Home",
+      memo: "Memos",
+      article: "Articles"
     };
-    this.context[context] = "&lt" + this.context[context] + "&gt";
+    this.contextObj[context] = "&lt" + this.contextObj[context] + "&gt";
 
-    document.body.innerHTML += `
-      <div id="left-area">
-        ${this.makeLink(this.context.home, "/")}
-        ${this.makeLink(this.context.memo, "/memo")}
-        ${this.makeLink(this.context.article, "/article")}
-      </div>
-    `;
+    this.target = document.querySelector(target);
+    this.htmlOp();
   }
 
   htmlOp() {
-    document.body.innerHTML += `
+    this.target.innerHTML += `
       <div id="left-area">
-        ${this.makeLink(this.context.home, "/")}
-        ${this.makeLink(this.context.memo, "/memo")}
-        ${this.makeLink(this.context.article, "/article")}
+        ${this.makeLink(this.contextObj.home, "/")}
+        ${this.makeLink(this.contextObj.memo, "/memo")}
+        ${this.makeLink(this.contextObj.article, "/article")}
       </div>
     `;
   }
 
   makeLink(name, url) {
-    return `<a href=${url}>${name}</a>`;
+    return `<a href="${url}">${name}</a>`;
   }
 }
