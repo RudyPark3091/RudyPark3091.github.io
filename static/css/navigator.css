@@ -1,9 +1,9 @@
-#navigator {
+#navigator-bar{
   margin: 0;
   width: var(--explorer-width);
   height: var(--navigator-height);
   position: absolute;
-  top: calc(var(--left-height) - var(--navigator-height));
+  top: calc(var(--left-height) - var(--navigator-height) - var(--navigator-buttons-height));
   left: calc(var(--left-width));
   background-color: var(--navigator-bg-color);
   border-top-left-radius: 5px;
@@ -11,28 +11,59 @@
   display: flex;
 }
 
-#navigator > div.navigator-traffic-light {
+#navigator-bar> div.navigator-traffic-light {
   margin: calc(var(--navigator-height) / 2 - var(--traffic-width) / 2) 2.5px;
   width: var(--traffic-width);
   height: var(--traffic-width);
   border-radius: 50%;
 }
 
-#navigator > #red {
+#navigator-bar> #red {
   margin-left: 8px;
   background-color: #f95c5b;
 }
 
-#navigator > #yellow {
+#navigator-bar> #yellow {
   background-color: #fabe3b;
 }
 
-#navigator > #green {
+#navigator-bar> #green {
   background-color: #38cd46;
 }
 
+#navigator-buttons {
+  margin: 0;
+  width: var(--explorer-width);
+  height: var(--navigator-buttons-height);
+  position: absolute;
+  top: calc(var(--left-height) - var(--navigator-buttons-height));
+  left: calc(var(--left-width));
+  background-color: #b0b0b0;
+  display: flex;
+}
+
+.navbuttons {
+  margin-top: 2.5px;
+  width: 30px;
+  height: 25px;
+  border-radius: 3px;
+  background-color: #dddddd;
+}
+
+#navbuttons-back {
+  margin-left: 5px;
+}
+
+#navbuttons-address {
+  margin-left: 20px;
+  width: 90%;
+  height: 25px;
+  border-radius: 0px;
+  background-color: #fff;
+}
+
 @media screen and (max-width: 1000px) {
-  #navigator {
+  #navigator-bar{
     margin-left: 0;
     top: calc(20vh - 20px);
   }
