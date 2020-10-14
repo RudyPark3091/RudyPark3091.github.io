@@ -8,7 +8,6 @@
   grid-template-columns: repeat(auto-fill, 140px);
   grid-template-rows: repeat(auto-fill, 140px);
   overflow: scroll;
-  box-shadow: 0px 20px 30px #999999;
 }
 
 #explorer::-webkit-scrollbar {
@@ -35,6 +34,8 @@
 @media screen and (max-width: 1000px) {
   #explorer {
     margin-top: calc(var(--left-height) + 10vh);
+    margin-left: calc((100vw - var(--explorer-width-media)) / 2);
+    width: var(--explorer-width-media);
     height: var(--explorer-height-media);
   }
 }

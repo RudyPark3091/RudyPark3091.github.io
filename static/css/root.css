@@ -5,8 +5,9 @@
   --left-width: 20vw;
   --left-height: 10vh;
   --explorer-width: 60vw;
+  --explorer-width-media: 90vw;
   --explorer-height: 80vh;
-  --explorer-height-media: 60vh;
+  --explorer-height-media: 75vh;
   --navigator-height: 20px;
   --navigator-buttons-height: 30px;
   --traffic-width: 13px;
