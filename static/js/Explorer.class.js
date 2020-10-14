@@ -29,8 +29,7 @@ class Explorer {
         });
       })
       .then(() => {
-        document.querySelector("#explorer").innerHTML =
-          this.navigatorUI + this.htmlElement;
+        document.querySelector("#explorer").innerHTML = this.htmlElement;
       })
       .then(() => {
         const folders = document.querySelectorAll(".explorer-route");
@@ -56,8 +55,7 @@ class Explorer {
               </svg>
             `;
             });
-            document.querySelector("#explorer").innerHTML =
-              this.navigatorUI + this.htmlElement;
+            document.querySelector("#explorer").innerHTML = this.htmlElement;
           };
         });
       })
