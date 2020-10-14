@@ -1,31 +1,31 @@
 #left-area {
-  width: 20vw;
+  width: var(--left-width);
   height: 100vh;
-  position: fixed;
+  position: absolute;
   left: 0px;
   top: 0px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  font-family: "KoPub Dotum";
-  font-weight: 700;
+  font-family: sans-serif;
+  font-weight: 400;
   font-style: italic;
   font-size: 20px;
   backdrop-filter: blur(10px);
+  z-index: 999;
 }
 
 #left-area > a {
   color: #000000;
-  margin: 30px; 0px;
-  cursor: pointer;
+  margin: 30px 0px;
 }
 
 @media screen and (max-width: 1000px) {
   #left-area {
     width: 100vw;
-    height: 10vh;
-    position: fixed;
+    height: var(--left-height);
+    position: absolute;
     left: 0px;
     top: 0px;
     flex-direction: row;

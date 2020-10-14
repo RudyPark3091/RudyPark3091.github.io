@@ -1,19 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>RudyPark3091 :: Memos</title>
-  <link rel="stylesheet" href="../static/css/root.css">
-  <link rel="stylesheet" href="../static/css/left-area.css">
-  <link rel="stylesheet" href="../static/css/explorer.css">
-</head>
-<body>
-  <script src="../static/js/LeftArea.class.js"></script>
-  <script src="../static/js/Link.class.js"></script>
-  <script src="../static/js/Explorer.class.js"></script>
-  <script type="text/javascript">
-    new LeftArea("memo", "body");
-    new Explorer("memo");
-  </script>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>RudyPark3091 :: Memos</title>
+    <link rel="stylesheet" href="../static/css/root.css" />
+    <link rel="stylesheet" href="../static/css/left-area.css" />
+    <link rel="stylesheet" href="../static/css/explorer.css" />
+    <link rel="stylesheet" href="../static/css/navigator.css" />
+  </head>
+  <body>
+    <script src="./meta/data.json"></script>
+    <script src="../static/js/LeftArea.class.js"></script>
+    <script src="../static/js/Link.class.js"></script>
+    <script src="../static/js/Explorer.class.js"></script>
+    <script src="../static/js/Navigator.class.js"></script>
+    <script src="../static/js/PostGenerator.class.js"></script>
+    <script type="text/javascript">
+      new LeftArea("memo", "body");
+      new Explorer("memo");
+      new PostGenerator("memo");
+    </script>
+  </body>
 </html>

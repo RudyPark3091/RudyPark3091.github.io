@@ -1,11 +1,11 @@
 #explorer {
-  margin-left: 20vw;
-  margin-top: 10vh;
-  width: 60vw;
-  height: 80vh;
+  margin-left: var(--left-width);
+  margin-top: var(--left-height);
+  width: var(--explorer-width);
+  height: var(--explorer-height);
   background-color: #ffffff;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(120px, 16.6%));
+  grid-template-columns: repeat(auto-fill, 140px);
   grid-template-rows: repeat(auto-fill, 140px);
   overflow: scroll;
 }
@@ -33,9 +33,7 @@
 
 @media screen and (max-width: 1000px) {
   #explorer {
-    margin-top: 20vh;
-    height: 60vh;
-    grid-template-columns: repeat(auto-fill, minmax(120px, 25%));
-    grid-template-rows: repeat(auto-fill, 140px);
+    margin-top: calc(var(--left-height) + 10vh);
+    height: var(--explorer-height-media);
   }
 }

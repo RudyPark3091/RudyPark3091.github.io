@@ -1,0 +1,39 @@
+#navigator {
+  margin: 0;
+  width: var(--explorer-width);
+  height: var(--navigator-height);
+  position: absolute;
+  top: calc(var(--left-height) - var(--navigator-height));
+  left: calc(var(--left-width));
+  background-color: var(--navigator-bg-color);
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  display: flex;
+}
+
+#navigator > div.navigator-traffic-light {
+  margin: calc(var(--navigator-height) / 2 - var(--traffic-width) / 2) 2.5px;
+  width: var(--traffic-width);
+  height: var(--traffic-width);
+  border-radius: 50%;
+}
+
+#navigator > #red {
+  margin-left: 8px;
+  background-color: #f95c5b;
+}
+
+#navigator > #yellow {
+  background-color: #fabe3b;
+}
+
+#navigator > #green {
+  background-color: #38cd46;
+}
+
+@media screen and (max-width: 1000px) {
+  #navigator {
+    margin-left: 0;
+    top: calc(20vh - 20px);
+  }
+}

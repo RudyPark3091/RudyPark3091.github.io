@@ -1,8 +1,16 @@
 @import url("https://fonts.googleapis.com/css2?family=Squada+One&display=swap");
-@import url("https://cdn.jsdelivr.net/npm/font-kopub@1.0/kopubdotum.min.css");
+@import url("https//cdn.jsdelivr.net/npm/font-kopub@1.0/kopubdotum.min.css");
 
 :root {
-  --hello: 1rem;
+  --left-width: 20vw;
+  --left-height: 10vh;
+  --explorer-width: 60vw;
+  --explorer-height: 80vh;
+  --explorer-height-media: 60vh;
+  --navigator-height: 20px;
+  --traffic-width: 13px;
+  --bg-color: #bbbbbb;
+  --navigator-bg-color: #999999;
 }
 
 html,
@@ -10,7 +18,7 @@ body {
   margin: 0px;
   font-weight: 400;
   font-family: "KoPub Dotum";
-  background-color: #bbbbbb;
+  background-color: var(--bg-color);
 }
 
 .dontcopy {
