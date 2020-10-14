@@ -63,8 +63,11 @@
 }
 
 @media screen and (max-width: 1000px) {
-  #navigator-bar{
-    margin-left: 0;
-    top: calc(20vh - 20px);
+  #navigator-bar {
+    top: calc(20vh - var(--navigator-height));
+  }
+
+  #navigator-buttons {
+    display: none;
   }
 }
