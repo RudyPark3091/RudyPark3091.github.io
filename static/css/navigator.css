@@ -67,7 +67,7 @@
 
 @media screen and (max-width: 1000px) {
   #navigator-bar {
-    top: calc(20vh - var(--navigator-height));
+    top: calc(15vh - var(--navigator-height));
     left: calc((100vw - var(--explorer-width-media)) / 2);
     width: var(--explorer-width-media);
   }

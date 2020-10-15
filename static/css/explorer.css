@@ -5,8 +5,8 @@
   height: var(--explorer-height);
   background-color: #ffffff;
   display: grid;
-  grid-template-columns: repeat(auto-fill, 140px);
-  grid-template-rows: repeat(auto-fill, 140px);
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(auto-fill, 70px);
   overflow: scroll;
 }
 
@@ -33,9 +33,10 @@
 
 @media screen and (max-width: 1000px) {
   #explorer {
-    margin-top: calc(var(--left-height) + 10vh);
+    margin-top: calc(var(--left-height) + 5vh);
     margin-left: calc((100vw - var(--explorer-width-media)) / 2);
     width: var(--explorer-width-media);
     height: var(--explorer-height-media);
+    grid-template-columns: 1fr;
   }
 }

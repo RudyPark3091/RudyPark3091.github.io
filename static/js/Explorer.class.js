@@ -34,9 +34,9 @@ class Explorer {
           this.data = data;
           data.column.forEach((category, i) => {
             this.htmlElement += `
-              <svg width="100px" height="100px" fill="#88d4fd" class="explorer-route" data-category="${category}">
-                <path d="M0 0 L50 0 L50 10 L90 10 L90 80 L0 80 Z" />
-                <text x="50%" y="95px" text-anchor="middle" fill="#000">${category}</text>
+              <svg width="500px" height="50px" fill="#88d4fd" class="explorer-route" data-category="${category}">
+                <path d="M0 0 L30 0 L30 5 L50 5 L50 40 L0 40 Z" />
+                <text x="20%" y="25px" text-anchor="left" fill="#000">${category}</text>
               </svg>
             `;
           });
@@ -73,20 +73,16 @@ class Explorer {
         }
 
         this.htmlElement = `
-          <svg width="100px" height="100px" fill="#88d4fd" class="explorer-route" data-category="..">
-            <path d="M0 0 L50 0 L50 10 L90 10 L90 80 L0 80 Z" />
-            <text x="50%" y="95px" text-anchor="middle" fill="#000">..</text>
+          <svg width="500px" height="50px" fill="#88d4fd" class="explorer-route" data-category="..">
+            <path d="M0 0 L30 0 L30 5 L50 5 L50 40 L0 40 Z" />
+            <text x="20%" y="25px" text-anchor="left" fill="#000">..</text>
           </svg>
         `;
         data.records[category].forEach((item) => {
           this.htmlElement += `
-          <svg width="100px" height="100px" fill="#88d4fd" class="explorer-route"> 
-            <path d="M0 0 L50 0 L50 10 L90 10 L90 80 L0 80 Z" />
-            <text x="50%" y="95px" text-anchor="middle" fill="#000">${
-              item.title.length > 11
-                ? item.title.substring(0, 11) + "..."
-                : item.title
-            }</text>
+          <svg width="500px" height="50px" fill="#88d4fd" class="explorer-route"> 
+            <path d="M0 0 L30 0 L30 5 L50 5 L50 40 L0 40 Z" />
+            <text x="20%" y="25px" text-anchor="left" fill="#000">${item.title}</text>
           </svg>
         `;
         });
