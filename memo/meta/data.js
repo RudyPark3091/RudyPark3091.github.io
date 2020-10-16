@@ -1,4 +1,4 @@
-{
+const jsonData = {
   "column" : ["python", "algorithm", "svg", "data-structure", "html/css", "node-js", "mysql"],
   "records" : {
     "python": [
@@ -15,3 +15,4 @@
     ]
   }
 }
+console.log(jsonData);

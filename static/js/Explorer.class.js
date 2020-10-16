@@ -7,7 +7,7 @@ class Explorer {
       <div id="explorer" class="fadein"></div>
     `;
     this.htmlElement = "";
-    this.data = {};
+    this.data = jsonData;
     this.context = context;
     this.render(this.context)
       .then((data) => {
@@ -26,35 +26,20 @@ class Explorer {
 
   render(context) {
     return new Promise((resolve, reject) => {
-      fetch(`/${context}/meta/data.json`)
-        .then((res) => {
-          return res.json();
-        })
-        .then((data) => {
-          this.data = data;
-          data.column.forEach((category, i) => {
-            this.htmlElement += `
-              <svg width="500px" height="50px" fill="#88d4fd" class="explorer-route" data-category="${category}">
-                <path d="M0 0 L30 0 L30 5 L50 5 L50 40 L0 40 Z" />
-                <text x="20%" y="25px" text-anchor="left" fill="#000">${category}</text>
-              </svg>
-            `;
-          });
-
-          return data;
-        })
-        .then((data) => {
-          document.querySelector("#explorer").innerHTML = this.htmlElement;
-          resolve(data);
-        })
-        .catch((err) => {
-          console.error(err);
-        });
+      this.data.column.forEach((category, i) => {
+        this.htmlElement += `
+          <svg width="500px" height="50px" fill="#88d4fd" class="explorer-route" data-category="${category}">
+            <path d="M0 0 L30 0 L30 5 L50 5 L50 40 L0 40 Z" />
+            <text x="20%" y="25px" text-anchor="left" fill="#000">${category}</text>
+          </svg>
+        `;
+      });
+      document.querySelector("#explorer").innerHTML = this.htmlElement;
+      resolve(this.data);
     });
   }
 
   handleClick(data) {
-    console.log(data);
 
     const folders = document.querySelectorAll(".explorer-route");
     folders.forEach((folder) => {
