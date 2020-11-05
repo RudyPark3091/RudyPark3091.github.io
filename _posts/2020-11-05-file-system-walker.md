@@ -43,6 +43,6 @@ int main(void) {
 }
 ```
 출처: [Stack Overflow]   
-디렉토리의 내용을 읽어오는 함수 readdir()로 dirent 구조체 entry를 초기화해가며 타입이 디렉토리인경우 재귀적으로 함수를 호출하고, 파일인 경우 화면에 파일의 이름을 출력하는 예제이다.   
+헤더파일 dirent.h 에 정의된 내용을 바탕으로 디렉토리의 내용을 읽어오는 함수 readdir()로 dirent 구조체 entry를 초기화해가며 타입이 디렉토리인경우 재귀적으로 함수를 호출하고, 파일인 경우 화면에 파일의 이름을 출력하는 예제이다.   
 
 [Stack Overflow]: https://stackoverflow.com/questions/8436841/how-to-recursively-list-directories-in-c-on-linux/8438663#8438663?newreg=37be0fe7c10b4b5ea49b35433d8ed44e
