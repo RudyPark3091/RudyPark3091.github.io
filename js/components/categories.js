@@ -33,8 +33,8 @@ class Categories {
   style() {
     return `
     .categories-container {
-      width: 30vw;
-      height: 50vh;
+      width: 30%;
+      height: 50%;
       padding: 10px;
       display: flex;
       flex-direction: column;
