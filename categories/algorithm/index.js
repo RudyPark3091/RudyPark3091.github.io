@@ -1,10 +1,12 @@
 import Renderer from "../../js/renderer.js";
 import Styler from "../../js/styler.js";
+import Post from "../../js/components/post.js";
 import PostList from "../../js/components/postList.js";
 import data from "./algorithm.data.js";
 
 const $elems = [
   new PostList(data),
+  new Post(data),
 ];
 
 const $target = document.querySelector("#app");
