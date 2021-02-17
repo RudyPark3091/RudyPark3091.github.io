@@ -1,5 +1,6 @@
 class Renderer {
-  constructor() {
+  constructor($target) {
+    this.$target = $target;
     this.$elems = [];
   }
 
@@ -8,7 +9,8 @@ class Renderer {
   }
 
   render() {
-    this.$elems.forEach(elem => elem.render());
+    this.$target.innerHTML = "";
+    this.$elems.forEach((elem) => this.$target.appendChild(elem.render()));
   }
 }
 

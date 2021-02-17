@@ -1,6 +1,12 @@
 :root {
   --bg-primary-color: #fff;
+  --bg-secondary-color: #eee;
+  --bg-light-color: #eee;
+  --bg-dark-color: #444;
   --primary-color: #000;
+  --secondary-color: #bbb;
+  --light-color: #eba;
+  --dark-color: #521;
 }
 
 html,
@@ -9,7 +15,18 @@ body {
   width: 100vw;
   height: 100vh;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   background-color: var(--bg-primary-color);
+  color: var(--primary-color);
+}
+
+a {
+  color: var(--primary-color);
+  text-decoration: none;
+}
+
+a:visited {
+  color: inherit;
 }
