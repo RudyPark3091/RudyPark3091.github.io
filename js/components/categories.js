@@ -1,7 +1,12 @@
-import data from "../../categories/data.js";
+import data from "../../categories/categories.data.js";
 
 class Categories {
-  constructor() {
+  constructor(w = "30%", h = "50%", mw = "70%", mh = "30%") {
+    this.w = w;
+    this.h = h;
+    this.mw = mw;
+    this.mh = mh;
+
     const $container = document.createElement("div");
     $container.classList.add("categories-container");
 
@@ -33,12 +38,12 @@ class Categories {
   style() {
     return `
     .categories-container {
-      width: 30%;
-      height: 50%;
+      width: ${this.w};
+      height: ${this.h};
       padding: 10px;
       display: flex;
       flex-direction: column;
-      overflow-Y: scroll;
+      overflow: scroll;
       background-color: var(--bg-light-color);
       border-radius: 5px;
     }
@@ -56,8 +61,8 @@ class Categories {
 
     @media screen and (max-width: 900px) {
       .categories-container {
-        width: 70vw;
-        height: 30vh;
+        width: ${this.mw};
+        height: ${this.mh};
       }
     }
     `;

@@ -1,11 +1,10 @@
-import Renderer from "./js/renderer.js";
-import Styler from "./js/styler.js";
-import Namecard from "./js/components/namecard.js";
-import Categories from "./js/components/categories.js";
+import Renderer from "../../js/renderer.js";
+import Styler from "../../js/styler.js";
+import PostList from "../../js/components/postList.js";
+import data from "./algorithm.data.js";
 
 const $elems = [
-  new Namecard(),
-  new Categories(),
+  new PostList(data),
 ];
 
 const $target = document.querySelector("#app");
