@@ -7,7 +7,6 @@ import Footer from "./js/components/footer.js";
 const $elems = [
   new Namecard(),
   new Categories(),
-  new Footer(),
 ];
 
 const $target = document.querySelector("#app");

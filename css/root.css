@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;400;700;900&display=swap');
+
 :root {
   --bg-primary-color: #fff;
   --bg-secondary-color: #eee;
@@ -20,6 +22,7 @@ body {
   align-items: center;
   background-color: var(--bg-primary-color);
   color: var(--primary-color);
+  font-family: 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif;
 }
 
 a {
