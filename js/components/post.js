@@ -1,6 +1,8 @@
 import * as marked from "../lib/marked.min.js";
 import data from "../../categories/algorithm/algorithm.data.js";
 import XButton from "./xButton.js";
+import NotFound from "./notfound.js";
+import Loading from "./loading.js";
 
 class Post {
   constructor(id) {
@@ -13,6 +15,11 @@ class Post {
     $content.classList.add("post-content");
     this.$content = $content;
 
+    this.$xbutton = new XButton(() => this.toggleHidden());
+    this.$notfound = new NotFound();
+    this.$loading = new Loading();
+    this.$container.appendChild(this.$xbutton.render());
+
     const src = data[id].url;
     this.get(src).then(content => {
       const $html = window.marked(content);
@@ -20,9 +27,6 @@ class Post {
       this.$container.appendChild(this.$content);
       this.addPaddingToContent();
     }).catch(() => {});
-
-    const $xbutton = new XButton(() => this.toggleHidden());
-    this.$xbutton = $xbutton;
   }
 
   update(id) {
@@ -32,12 +36,20 @@ class Post {
       this.$content.innerHTML = $html;
       this.addPaddingToContent();
       this.$container.appendChild(this.$xbutton.render());
-    }).catch(() => {});
+    }).catch((e) => {});
   }
 
   async get(url) {
-    const content = await fetch(url);
-    return content.text();
+    this.$content.innerHTML = this.$loading.render().outerHTML;
+    const content = await fetch(url)
+      .then(res => {
+        if (res.status >= 400) throw new Error("not found");
+        return res.text();
+      })
+      .catch((e) => {
+        this.$content.innerHTML = this.$notfound.render().outerHTML;
+      });
+    return content;
   }
 
   addPaddingToContent() {
@@ -51,7 +63,10 @@ class Post {
   }
 
   style() {
-    return this.$xbutton.style() + `
+    return this.$xbutton.style()
+      + this.$notfound.style()
+      + this.$loading.style()
+      + `
     .post-container {
       --xbutton-top: 8%;
       --xbutton-right: 10%;

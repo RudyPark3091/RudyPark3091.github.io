@@ -3,7 +3,7 @@ import Styler from "../../js/styler.js";
 import Post from "../../js/components/post.js";
 import PostList from "../../js/components/postList.js";
 
-const post = new Post(1);
+const post = new Post(0);
 const postList = new PostList((id) => {
   post.toggleHidden();
   post.update(id)

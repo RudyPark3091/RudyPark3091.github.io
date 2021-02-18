@@ -53,6 +53,7 @@ class XButton {
       position: fixed;
       top: calc(var(--xbutton-top) - ${this.offset}px);
       right: calc(var(--xbutton-right) - ${this.offset}px);
+      cursor: pointer;
     }
     `;
   }
