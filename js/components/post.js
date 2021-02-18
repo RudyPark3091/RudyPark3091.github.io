@@ -18,6 +18,7 @@ class Post {
     this.$xbutton = new XButton(() => this.toggleHidden());
     this.$notfound = new NotFound();
     this.$loading = new Loading();
+    this.$container.appendChild(this.$content);
     this.$container.appendChild(this.$xbutton.render());
   }
 
@@ -28,7 +29,9 @@ class Post {
       this.$content.innerHTML = $html;
       this.addPaddingToContent();
       this.$container.appendChild(this.$xbutton.render());
-    }).catch((e) => {});
+    }).catch((e) => {
+      console.log(e);
+    });
   }
 
   async get(url) {
