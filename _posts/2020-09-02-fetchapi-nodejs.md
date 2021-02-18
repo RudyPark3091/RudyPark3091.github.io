@@ -45,8 +45,8 @@ const { JSDOM } = require("jsdom");
 // html 변수 -> html element in String type
 const parsedHtml = new JSDOM(html);
 const element = new JSDOM(
-        parsedHtml.window.document.querySelector( `just like in css selector`).innerHTML
-        );
+  parsedHtml.window.document.querySelector( `just like in css selector`).innerHTML
+);
 ...
 ```
 위와 같이 parentElement.window.document.querySelector 을 이용해 원래 하던것처럼 element 를 뽑아낼 수 있다. 

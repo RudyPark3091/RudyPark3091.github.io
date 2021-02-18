@@ -1,6 +1,7 @@
+import data from "../../categories/algorithm/algorithm.data.js";
+
 class PostList {
-  constructor(data, w = "80%", h = "80%", mw = "80%", mh = "80%") {
-    this.data = data;
+  constructor(handleClick, w = "80%", h = "80%", mw = "80%", mh = "80%") {
     this.w = w;
     this.h = h;
     this.mw = mw;
@@ -13,19 +14,26 @@ class PostList {
     $items.forEach(item => $container.appendChild(item));
 
     this.$container = $container;
+    this.$container.onclick = (e) => {
+      if (e.target.className === "postlist-container") return;
+      let t = e.target;
+      while (t.dataset.id === undefined) t = t.parentNode;
+      handleClick(t.dataset.id);
+    }
   }
 
-  wrapUp(data) {
+  wrapUp(_data) {
     const $wrapper = document.createElement("div");
     $wrapper.classList.add("postlist-wrapper");
+    $wrapper.dataset.id = _data.id;
 
     $wrapper.innerHTML = `
     <div class="postlist-title">
-      <img src="${data.icon}" width="40px" alt=""/>
-      <span>${data.title}</span>
+      <img src="${_data.icon}" width="40px" alt=""/>
+      <span>${_data.title}</span>
     </div>
     <div class="postlist-tags">${
-      data.tags.map(tag => `<span class="postlist-tags-item">${tag}</span>`)
+      _data.tags.map(tag => `<span class="postlist-tags-item">${tag}</span>`)
     }</div>
     `;
 
