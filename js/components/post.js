@@ -5,7 +5,12 @@ import NotFound from "./notfound.js";
 import Loading from "./loading.js";
 
 class Post {
-  constructor() {
+  constructor(w = "60%", h = "80%", mw = "80%", mh = "80%") {
+    this.w = w;
+    this.h = h;
+    this.mw = mw;
+    this.mh = mh;
+
     const $container = document.createElement("div");
     $container.classList.add("post-container");
     $container.classList.add("hidden");
@@ -29,9 +34,7 @@ class Post {
       this.$content.innerHTML = $html;
       this.addPaddingToContent();
       this.$container.appendChild(this.$xbutton.render());
-    }).catch((e) => {
-      console.log(e);
-    });
+    }).catch((e) => {});
   }
 
   async get(url) {
@@ -66,8 +69,8 @@ class Post {
       --xbutton-top: 8%;
       --xbutton-right: 10%;
       position: absolute;
-      width: 80%;
-      height: 80%;
+      width: ${this.w};
+      height: ${this.h};
       padding: 30px;
       border-radius: 5px;
       background-color: var(--bg-primary-color);
@@ -87,6 +90,12 @@ class Post {
       word-break: break-all;
     }
 
+    .post-content code {
+      padding: 2px 7px;
+      background-color: var(--bg-secondary-color);
+      border-radius: 5px;
+    }
+
     .post-content pre {
       --padding: 10px;
       width: calc(100% - var(--padding) * 2);
@@ -98,6 +107,13 @@ class Post {
 
     .post-content .post-padding {
       padding-bottom: 30px;
+    }
+
+    @media screen and (max-width: 900px) {
+      .post-container {
+        width: ${this.mw};
+        height: ${this.mh};
+      }
     }
     `;
   }

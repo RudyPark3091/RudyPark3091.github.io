@@ -59,6 +59,10 @@ class Categories {
       margin: 10px;
     }
 
+    .categories-wrapper a {
+      text-decoration: none;
+    }
+
     @media screen and (max-width: 900px) {
       .categories-container {
         width: ${this.mw};
