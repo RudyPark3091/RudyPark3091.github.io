@@ -16,10 +16,10 @@ class Post {
     const src = data[id].url;
     this.get(src).then(content => {
       const $html = window.marked(content);
-      $content.innerHTML = $html;
-      $container.appendChild(this.$content);
+      this.$content.innerHTML = $html;
+      this.$container.appendChild(this.$content);
       this.addPaddingToContent();
-    });
+    }).catch(() => {});
 
     const $xbutton = new XButton(() => this.toggleHidden());
     this.$xbutton = $xbutton;
@@ -32,7 +32,7 @@ class Post {
       this.$content.innerHTML = $html;
       this.addPaddingToContent();
       this.$container.appendChild(this.$xbutton.render());
-    });
+    }).catch(() => {});
   }
 
   async get(url) {
