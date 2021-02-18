@@ -5,7 +5,7 @@ import NotFound from "./notfound.js";
 import Loading from "./loading.js";
 
 class Post {
-  constructor(id) {
+  constructor() {
     const $container = document.createElement("div");
     $container.classList.add("post-container");
     $container.classList.add("hidden");
@@ -19,14 +19,6 @@ class Post {
     this.$notfound = new NotFound();
     this.$loading = new Loading();
     this.$container.appendChild(this.$xbutton.render());
-
-    const src = data[id].url;
-    this.get(src).then(content => {
-      const $html = window.marked(content);
-      this.$content.innerHTML = $html;
-      this.$container.appendChild(this.$content);
-      this.addPaddingToContent();
-    }).catch(() => {});
   }
 
   update(id) {
