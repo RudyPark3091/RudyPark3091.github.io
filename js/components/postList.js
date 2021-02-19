@@ -55,6 +55,7 @@ class PostList {
       display: flex;
       justify-content: space-between;
       align-items: center;
+      cursor: pointer;
     }
 
     .postlist-title {

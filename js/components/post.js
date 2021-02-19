@@ -28,7 +28,8 @@ class Post {
   }
 
   update(id) {
-    const src = data[+id].url;
+    const target = data.filter(it => it.id === +id)[0];
+    const src = target.url;
     this.get(src).then(content => {
       const $html = window.marked(content);
       this.$content.innerHTML = $html;

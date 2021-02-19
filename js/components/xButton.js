@@ -1,5 +1,5 @@
 class XButton {
-  constructor(handleClick, size = "20", offset = "10") {
+  constructor(handleClick, size = "20", offset = "20") {
     this.size = size;
     this.offset = offset;
 
