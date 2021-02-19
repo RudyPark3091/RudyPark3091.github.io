@@ -1,7 +1,7 @@
 import data from "../../categories/algorithm/algorithm.data.js";
 
 class PostList {
-  constructor(handleClick, w = "60%", h = "80%", mw = "80%", mh = "80%") {
+  constructor(handleClick, w = "40%", h = "80%", mw = "80%", mh = "80%") {
     this.w = w;
     this.h = h;
     this.mw = mw;

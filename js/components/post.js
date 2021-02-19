@@ -28,8 +28,9 @@ class Post {
   }
 
   update(id) {
+    const endpoint = "https://raw.githubusercontent.com/RudyPark3091/RudyPark3091.github.io/master";
     const target = data.filter(it => it.id === +id)[0];
-    const src = target.url;
+    const src = target.url[0] === "/" ? endpoint + target.url : target.url;
     this.get(src).then(content => {
       const $html = window.marked(content);
       this.$content.innerHTML = $html;
