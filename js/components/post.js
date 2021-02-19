@@ -28,9 +28,15 @@ class Post {
   }
 
   update(id) {
-    const endpoint = "https://raw.githubusercontent.com/RudyPark3091/RudyPark3091.github.io/master";
     const target = data.filter(it => it.id === +id)[0];
-    const src = target.url[0] === "/" ? endpoint + target.url : target.url;
+
+    // // for production env
+    // const endpoint = "https://raw.githubusercontent.com/RudyPark3091/RudyPark3091.github.io/master";
+    // const src = target.url[0] === "/" ? endpoint + target.url : target.url;
+
+    // for development env
+    const src = target.url;
+
     this.get(src).then(content => {
       const $html = window.marked(content);
       this.$content.innerHTML = $html;
@@ -96,6 +102,11 @@ class Post {
       padding: 2px 7px;
       background-color: var(--bg-secondary-color);
       border-radius: 5px;
+    }
+
+    pre > code {
+      font-family: "victor mono", sans-serif;
+      font-size: 0.7rem;
     }
 
     .post-content pre {

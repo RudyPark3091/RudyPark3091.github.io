@@ -1,17 +1,20 @@
-import data from "../../categories/algorithm/algorithm.data.js";
+import Tags from "./tags.js";
 
 class PostList {
-  constructor(handleClick, w = "40%", h = "80%", mw = "80%", mh = "80%") {
+  constructor(data, handleClick, w = "576px", h = "80%", mw = "80%", mh = "80%") {
     this.w = w;
     this.h = h;
     this.mw = mw;
     this.mh = mh;
+    this.data = data;
 
     const $container = document.createElement("div");
     $container.classList.add("postlist-container");
 
     const $items = data.map(it => this.wrapUp(it));
     $items.forEach(item => $container.appendChild(item));
+
+    this.$tags = new Tags([]);
 
     this.$container = $container;
     this.$container.onclick = (e) => {
@@ -32,16 +35,14 @@ class PostList {
       <img src="${_data.icon}" width="40px" alt=""/>
       <span>${_data.title}</span>
     </div>
-    <div class="postlist-tags">${
-      _data.tags.map(tag => `<span class="postlist-tags-item">${tag}</span>`)
-    }</div>
     `;
+    $wrapper.appendChild(new Tags(_data.tags).render());
 
     return $wrapper;
   }
 
   style() {
-    return `
+    return this.$tags.style() + `
     .postlist-container {
       width: ${this.w};
       height: ${this.h};
@@ -63,20 +64,9 @@ class PostList {
       align-items: center;
     }
     
-    .postlist-wrapper * {
-      margin: 10px;
-    }
-
-    .postlist-tags {
-      display: flex;
-      flex-wrap: wrap;
-    }
-
-    .postlist-tags-item {
-      padding: 2px 10px;
-      margin: 3px;
-      background-color: var(--light-color);
-      border-radius: 5px;
+    .postlist-title > *,
+    .postlist-wrapper > * {
+      margin: 7px 10px;
     }
 
     @media screen and (max-width: 900px) {

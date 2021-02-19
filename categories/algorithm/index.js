@@ -2,9 +2,10 @@ import Renderer from "../../js/renderer.js";
 import Styler from "../../js/styler.js";
 import Post from "../../js/components/post.js";
 import PostList from "../../js/components/postList.js";
+import data from "./algorithm.data.js";
 
 const post = new Post();
-const postList = new PostList((id) => {
+const postList = new PostList(data, (id) => {
   post.toggleHidden();
   post.update(id)
 });
