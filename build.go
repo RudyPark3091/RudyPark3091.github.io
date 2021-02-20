@@ -145,7 +145,6 @@ func writeListJS(file os.FileInfo) {
 
 func build(wg *sync.WaitGroup, markdown, path string) {
 	writeHTML(markdown, false)()
-	// initJavascript(path)
 	writeJavascript(markdown, false)()
 	defer wg.Done()
 }
