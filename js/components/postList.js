@@ -1,12 +1,12 @@
 import Tags from "./tags.js";
+import data from "/categories/algorithm/algorithm.data.js";
 
 class PostList {
-  constructor(data, handleClick, w = "576px", h = "80%", mw = "80%", mh = "80%") {
+  constructor(handleClick, w = "576px", h = "80%", mw = "80%", mh = "80%") {
     this.w = w;
     this.h = h;
     this.mw = mw;
     this.mh = mh;
-    this.data = data;
 
     const $container = document.createElement("div");
     $container.classList.add("postlist-container");
