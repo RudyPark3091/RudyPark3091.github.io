@@ -83,33 +83,6 @@ func encode64(content []byte) []byte {
 	return []byte(s)
 }
 
-func initHTML(path, t string) {
-	dir := filepath.Join(rootDirName, t)
-	file := "index.html"
-
-	mkdir(dir)
-	touch(dir, file)
-
-	target := filepath.Join(dir, file)
-	f := read(path)
-
-	write(target, read(header))
-	write(target, encode64(f))
-	write(target, read(footer))
-}
-
-func getPostGen() []byte {
-	return read(postGen)
-}
-
-func initJavascript(path, t string) {
-	dir := filepath.Join(rootDirName, t)
-	file := "index.js"
-
-	target := filepath.Join(dir, file)
-	writeOnce(target, getPostGen())
-}
-
 func parsePath(path string) string {
 	dir, file := filepath.Split(path)
 	spl := strings.Split(dir, "/")[1:]
@@ -117,57 +90,63 @@ func parsePath(path string) string {
 	return filepath.Join(joined, strings.TrimSuffix(file, ".md"))
 }
 
-func writeHTML(dir string) {
-	name := "index.html"
-
-	path := filepath.Join(rootDirName, dir)
-	mkdir(path)
-	touch(path, name)
-
-	target := filepath.Join(path, name)
-	writeOnce(target, read(header))
-	// something
-	write(target, read(footer))
-}
-
-func writeJavascript(dir string, isDir bool) func() {
+func writeHTML(markdown string, isDir bool) func() {
 	return func() {
-		name := "index.js"
+		name := "index.html"
 
-		path := filepath.Join(rootDirName, dir)
+		path := filepath.Join(rootDirName, parsePath(markdown))
 		mkdir(path)
 		touch(path, name)
 
 		target := filepath.Join(path, name)
-		writeOnce(target, read(viewHeader))
-		// import statement
-		if isDir {
-			write(target, []byte(
-				"import PostList from '/js/components/postList.js';",
-			))
+		writeOnce(target, read(header))
+		if !isDir {
+			f := read(markdown)
+			write(target, encode64(f))
 		}
-		write(target, read(viewBody))
-		// instance declaration
-		if isDir {
-			write(target, []byte(
-				"new PostList(),",
-			))
-		}
-		write(target, read(viewFooter))
+		write(target, read(footer))
 	}
 }
 
 func writeListHTML(file os.FileInfo) {
-	writeHTML(file.Name())
+	writeHTML(file.Name(), true)()
+}
+
+func writeJavascript(markdown string, isDir bool) func() {
+	return func() {
+		name := "index.js"
+
+		path := filepath.Join(rootDirName, parsePath(markdown))
+		mkdir(path)
+		touch(path, name)
+
+		target := filepath.Join(path, name)
+		if isDir {
+			writeOnce(target, read(viewHeader))
+			// import statement
+			write(target, []byte(
+				"import PostList from '/js/components/postList.js';",
+			))
+			write(target, read(viewBody))
+			// instance declaration
+			write(target, []byte(
+				"new PostList(),",
+			))
+			write(target, read(viewFooter))
+		} else {
+			write(target, read(postGen))
+		}
+	}
 }
 
 func writeListJS(file os.FileInfo) {
 	writeJavascript(file.Name(), true)()
 }
 
-func build(wg *sync.WaitGroup, path, target string) {
-	initHTML(path, target)
-	initJavascript(path, target)
+func build(wg *sync.WaitGroup, markdown, path string) {
+	writeHTML(markdown, false)()
+	// initJavascript(path)
+	writeJavascript(markdown, false)()
 	defer wg.Done()
 }
 
