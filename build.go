@@ -117,39 +117,6 @@ func parsePath(path string) string {
 	return filepath.Join(joined, strings.TrimSuffix(file, ".md"))
 }
 
-func initRootHTML() {
-	file := "index.html"
-
-	mkdir(rootDirName)
-	touch(rootDirName, file)
-
-	target := filepath.Join(rootDirName, file)
-	writeOnce(target, read(header))
-	write(target, read(footer))
-}
-
-func initRootJavascript() {
-	file := "index.js"
-
-	touch(rootDirName, file)
-
-	target := filepath.Join(rootDirName, file)
-	writeOnce(target, read(viewHeader))
-	write(target, []byte(
-		"import PostList from '/js/components/postlist.js';\n\n",
-	))
-	write(target, read(viewBody))
-	write(target, []byte(
-		"  new PostList(),\n",
-	))
-	write(target, read(viewFooter))
-}
-
-func initRoot() {
-	initRootHTML()
-	initRootJavascript()
-}
-
 func writeHTML(dir string) {
 	name := "index.html"
 
@@ -176,7 +143,7 @@ func writeJavascript(dir string, isDir bool) func() {
 		// import statement
 		if isDir {
 			write(target, []byte(
-				"import PostList from '/js/components/postlist.js';",
+				"import PostList from '/js/components/postList.js';",
 			))
 		}
 		write(target, read(viewBody))
