@@ -83,6 +83,7 @@ class Post {
       border-radius: 5px;
       background-color: var(--bg-primary-color);
       display: flex;
+      flex-direction: column;
       justify-content: center;
       align-items: center;
       overflow: scroll;

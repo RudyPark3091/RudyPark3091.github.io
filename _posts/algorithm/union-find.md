@@ -1,5 +1,5 @@
 ---
-# Union-find 알고리즘
+# Union find 알고리즘
 ---
 
 ## 정의
