@@ -1,4 +1,4 @@
 import Renderer from "/js/renderer.js";
 import Styler from "/js/styler.js";
 import data from "./data.js";
-// import tags from "./tag.js"
+import tags from "./tag.js"
