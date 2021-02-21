@@ -24,6 +24,6 @@ go run build.go $distRootDir
 
 echo "\033[31m> Deployment complete!\033[0m"
 echo "\033[31m> Terminating...\033[0m"
-sleep 5
+sleep 0.5
 
 tput rmcup

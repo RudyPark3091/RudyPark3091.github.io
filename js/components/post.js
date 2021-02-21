@@ -1,5 +1,4 @@
 import * as marked from "../lib/marked.min.js";
-import data from "../../categories/algorithm/algorithm.data.js";
 import XButton from "./xButton.js";
 import NotFound from "./notfound.js";
 import Loading from "./loading.js";

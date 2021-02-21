@@ -106,6 +106,11 @@ func encode64(content []byte) []byte {
 	return []byte(s)
 }
 
+// gets .md file path inside _posts
+// returns into category/${.md-filename}
+// (ex)
+// input: _posts/algorithm/***.md
+// output: algorithm/***
 func parsePath(path string) string {
 	dir, file := filepath.Split(path)
 	spl := strings.Split(dir, "/")[1:]
@@ -113,21 +118,25 @@ func parsePath(path string) string {
 	return filepath.Join(joined, strings.TrimSuffix(file, ".md"))
 }
 
+// returns parent directory path
 func parseParentDir(path string) string {
 	dir, _ := filepath.Split(path)
 	spl := strings.Split(dir, "/")[1:]
 	return filepath.Join(spl...)
 }
 
-func writeHTML(markdown string, isDir bool) func() {
+func writeHTML(markdown, p string, isDir bool) func() {
 	return func() {
 		name := "index.html"
 
-		path := filepath.Join(rootDirName, parsePath(markdown))
+		path := filepath.Join(rootDirName, p)
 		mkdir(path)
 		touch(path, name)
 
 		target := filepath.Join(path, name)
+		if isDir {
+			target = filepath.Join(rootDirName, p, name)
+		}
 		writeOnce(target, read(header))
 		if !isDir {
 			f := read(markdown)
@@ -137,11 +146,11 @@ func writeHTML(markdown string, isDir bool) func() {
 	}
 }
 
-func writeListHTML(file os.FileInfo) {
-	writeHTML(file.Name(), true)()
+func writeListHTML(file os.FileInfo, path string) {
+	writeHTML(file.Name(), path, true)()
 }
 
-func writeJavascript(markdown string, isDir bool) func() {
+func writeJavascript(markdown, p string, isDir bool) func() {
 	return func() {
 		name := "index.js"
 
@@ -150,6 +159,9 @@ func writeJavascript(markdown string, isDir bool) func() {
 		touch(path, name)
 
 		target := filepath.Join(path, name)
+		if isDir {
+			target = filepath.Join(rootDirName, p, name)
+		}
 		if isDir {
 			writeOnce(target, read(viewHeader))
 			// import statement
@@ -168,11 +180,10 @@ func writeJavascript(markdown string, isDir bool) func() {
 	}
 }
 
-func writeListJS(file os.FileInfo) {
-	writeJavascript(file.Name(), true)()
+func writeListJS(file os.FileInfo, p string) {
+	path := filepath.Join(rootDirName, p)
+	writeJavascript(path, p, true)()
 }
-
-func encodeJSON() {}
 
 func writeDataFile(markdown, path string) {
 	dataFile := "data.js"
@@ -228,16 +239,11 @@ func writeTagFile(markdown, path string) {
 }
 
 func build(wg *sync.WaitGroup, markdown, path string) {
-	writeHTML(markdown, false)()
-	writeJavascript(markdown, false)()
+	writeHTML(markdown, path, false)()
+	writeJavascript(markdown, path, false)()
 	writeDataFile(markdown, path)
 	writeTagFile(markdown, path)
 	defer wg.Done()
-}
-
-func touchDataFile(path string) {
-	fileName := "data.js"
-	touch(filepath.Join(rootDirName, path), fileName)
 }
 
 func walk(path string, info os.FileInfo, err error) error {
@@ -250,9 +256,9 @@ func walk(path string, info os.FileInfo, err error) error {
 		wg.Add(1)
 		go build(wg, path, target)
 	} else if info.Name() != "_posts" {
-		writeListHTML(info)
-		writeListJS(info)
-		touchDataFile(info.Name())
+		target := parsePath(path)
+		writeListHTML(info, target)
+		writeListJS(info, target)
 	}
 	wg.Wait()
 	return nil
