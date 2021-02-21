@@ -15,15 +15,15 @@ rm -rf $distRootDir
 echo "\033[31m> Building Application...\033[0m"
 go run build.go $distRootDir
 
-echo "\033[31m> Connecting Github...\033[0m"
-git add --all
-git restore --staged serve.sh
-git commit -m "Deploy - ${1}"
-echo "\033[31m> Pushing remote...\033[0m"
-git push origin master
+# echo "\033[31m> Connecting Github...\033[0m"
+# git add --all
+# git restore --staged serve.sh
+# git commit -m "Deploy - ${1}"
+# echo "\033[31m> Pushing remote...\033[0m"
+# git push origin master
 
 echo "\033[31m> Deployment complete!\033[0m"
 echo "\033[31m> Terminating...\033[0m"
-sleep 0.5
+sleep 5
 
 tput rmcup

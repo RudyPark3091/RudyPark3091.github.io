@@ -1,8 +1,7 @@
 import Tags from "./tags.js";
-import data from "/categories/algorithm/algorithm.data.js";
 
 class PostList {
-  constructor(handleClick, w = "576px", h = "80%", mw = "80%", mh = "80%") {
+  constructor(data, handleClick, w = "576px", h = "80%", mw = "80%", mh = "80%") {
     this.w = w;
     this.h = h;
     this.mw = mw;

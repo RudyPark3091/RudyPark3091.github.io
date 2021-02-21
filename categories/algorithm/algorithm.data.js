@@ -8,7 +8,7 @@
 
 import tags from "./tags.data.js";
 
-export default [
+export const data = [
   {
     "title": "sample post",
     "url": "/_posts/2020-08-26-first-post.md",
