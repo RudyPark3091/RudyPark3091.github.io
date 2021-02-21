@@ -86,7 +86,7 @@ func writeOnce(path string, content []byte) {
 
 func findTitle(content []byte) string {
 	str := string(content)
-	r, _ := regexp.Compile("# ([\\w+\\s가-힣:-{1}])*")
+	r, _ := regexp.Compile("# ([\\w+\\s가-힣:-{1}'\"])*")
 	title := r.FindString(str)
 	title = strings.TrimSuffix(title, "\n")
 	title = strings.TrimPrefix(title, "# ")
@@ -96,7 +96,10 @@ func findTitle(content []byte) string {
 func findTags(content []byte) []string {
 	str := string(content)
 	r, _ := regexp.Compile("### tags: (#[a-zA-Z가-힣0-9\\.:-{1}]+,?\\s?)*")
-	tags := r.FindString(str)[9:]
+	tags := r.FindString(str)
+	if len(tags) >= 9 {
+		tags = tags[9:]
+	}
 	tags = strings.TrimSuffix(tags, "\n")
 	return strings.Split(tags, ",")
 }
@@ -214,35 +217,35 @@ func writeDataFile(markdown, path string) {
 	}
 }
 
-func writeTagFile(markdown, path string) {
-	tagFile := "tag.js"
-	file := filepath.Join(
-		rootDirName, parseParentDir(markdown), tagFile,
-	)
-	f, err := os.OpenFile(file, os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0600)
-	writeOnce(file, []byte("export default ["))
-	if err != nil {
-		panic(err)
-	}
+// func writeTagFile(markdown, path string) {
+// 	tagFile := "tag.js"
+// 	file := filepath.Join(
+// 		rootDirName, parseParentDir(markdown), tagFile,
+// 	)
+// 	f, err := os.OpenFile(file, os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0600)
+// 	writeOnce(file, []byte("export default ["))
+// 	if err != nil {
+// 		panic(err)
+// 	}
 
-	e := json.NewEncoder(f)
-	e.SetIndent("", "  ")
-	t := &TagData{
-		Name:  "hi",
-		Color: "#ffffff",
-	}
-	e.Encode(t)
-	_, err = f.Write([]byte(","))
-	if err != nil {
-		panic(err)
-	}
-}
+// 	e := json.NewEncoder(f)
+// 	e.SetIndent("", "  ")
+// 	t := &TagData{
+// 		Name:  "hi",
+// 		Color: "#ffffff",
+// 	}
+// 	e.Encode(t)
+// 	_, err = f.Write([]byte(","))
+// 	if err != nil {
+// 		panic(err)
+// 	}
+// }
 
 func build(wg *sync.WaitGroup, markdown, path string) {
 	writeHTML(markdown, path, false)()
 	writeJavascript(markdown, path, false)()
 	writeDataFile(markdown, path)
-	writeTagFile(markdown, path)
+	// writeTagFile(markdown, path)
 	defer wg.Done()
 }
 
