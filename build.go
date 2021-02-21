@@ -21,6 +21,7 @@ var viewHeader string = "./blueprint/view-header.js.bp"
 var viewBody string = "./blueprint/view-body.js.bp"
 var viewFooter string = "./blueprint/view-footer.js.bp"
 
+// PostData represents content of data.js files
 type PostData struct {
 	Title string   `json:"title"`
 	URL   string   `json:"url"`
@@ -29,6 +30,7 @@ type PostData struct {
 	ID    int      `json:"id"`
 }
 
+// PostData represents content of tag.js files
 type TagData struct {
 	Name  string `json:"name"`
 	Color string `json:"color"`
@@ -188,7 +190,7 @@ func writeListJS(file os.FileInfo, p string) {
 	writeJavascript(path, p, true)()
 }
 
-func writeDataFile(markdown, path string) {
+func writeDataFile(markdown, path string, isDir bool) {
 	dataFile := "data.js"
 	file := filepath.Join(
 		rootDirName, parseParentDir(markdown), dataFile,
@@ -199,15 +201,27 @@ func writeDataFile(markdown, path string) {
 		panic(err)
 	}
 
-	mdBody := read(markdown)
+	mdBody := []byte{}
+	if !isDir {
+		mdBody = read(markdown)
+	}
+
+	title := findTitle(mdBody)
+	if isDir {
+		_, title = filepath.Split(path)
+	}
+	_, url := filepath.Split(path)
+	icon := "/icons/document.svg"
+	if isDir {
+		icon = "/icons/neural.svg"
+	}
 
 	e := json.NewEncoder(f)
 	e.SetIndent("", "  ")
-	_, url := filepath.Split(path)
 	p := &PostData{
-		Title: findTitle(mdBody),
+		Title: title,
 		URL:   url,
-		Icon:  "/icons/document.svg",
+		Icon:  icon,
 		Tags:  findTags(mdBody),
 		ID:    0,
 	}
@@ -245,24 +259,25 @@ func writeTagFile(markdown, path string) {
 func build(wg *sync.WaitGroup, markdown, path string) {
 	writeHTML(markdown, path, false)()
 	writeJavascript(markdown, path, false)()
-	writeDataFile(markdown, path)
+	writeDataFile(markdown, path, false)
 	writeTagFile(markdown, path)
 	defer wg.Done()
 }
 
-func walk(path string, info os.FileInfo, err error) error {
+func walk(markdown string, info os.FileInfo, err error) error {
 	wg := new(sync.WaitGroup)
 	if err != nil {
 		return err
 	}
 	if !info.IsDir() {
-		target := parsePath(path)
+		path := parsePath(markdown)
 		wg.Add(1)
-		go build(wg, path, target)
+		go build(wg, markdown, path)
 	} else if info.Name() != "_posts" {
-		target := parsePath(path)
-		writeListHTML(info, target)
-		writeListJS(info, target)
+		path := parsePath(markdown)
+		writeListHTML(info, path)
+		writeListJS(info, path)
+		writeDataFile(markdown, path, true)
 	}
 	wg.Wait()
 	return nil
