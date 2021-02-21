@@ -17,7 +17,7 @@ class PostList {
 
     this.$container = $container;
     this.$container.onclick = (e) => {
-      location.href = "#"
+      location.href = e.target.dataset.url;
     }
   }
 
@@ -25,6 +25,7 @@ class PostList {
     const $wrapper = document.createElement("div");
     $wrapper.classList.add("postlist-wrapper");
     $wrapper.dataset.id = _data.id;
+    $wrapper.dataset.url = _data.url;
 
     $wrapper.innerHTML = `
     <div class="postlist-title">

@@ -203,9 +203,10 @@ func writeDataFile(markdown, path string) {
 
 	e := json.NewEncoder(f)
 	e.SetIndent("", "  ")
+	_, url := filepath.Split(path)
 	p := &PostData{
 		Title: findTitle(mdBody),
-		URL:   markdown,
+		URL:   url,
 		Icon:  "/icons/document.svg",
 		Tags:  findTags(mdBody),
 		ID:    0,
