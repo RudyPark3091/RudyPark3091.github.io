@@ -1,7 +1,7 @@
 import Tags from "./tags.js";
 
 class PostList {
-  constructor(data, handleClick, w = "576px", h = "80%", mw = "80%", mh = "80%") {
+  constructor(data, tags, w = "576px", h = "80%", mw = "80%", mh = "80%") {
     this.w = w;
     this.h = h;
     this.mw = mw;
@@ -13,14 +13,11 @@ class PostList {
     const $items = data.map(it => this.wrapUp(it));
     $items.forEach(item => $container.appendChild(item));
 
-    this.$tags = new Tags([]);
+    this.$tags = new Tags(tags);
 
     this.$container = $container;
     this.$container.onclick = (e) => {
-      if (e.target.className === "postlist-container") return;
-      let t = e.target;
-      while (t.dataset.id === undefined) t = t.parentNode;
-      handleClick(t.dataset.id);
+      location.href = "#"
     }
   }
 

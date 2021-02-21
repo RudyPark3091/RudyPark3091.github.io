@@ -52,3 +52,6 @@ int comb(int n, int r) {
 nCr = n-1Cr-1 + n-1Cr 임을 이용해 조합을 계산
 
 이때 중복되는 계산을 줄이기 위해 배열에 값을 저장하고 사용함
+
+---
+### tags: #tag1, #tag2

@@ -85,3 +85,6 @@ while (getline(strm, b, ' ')) {
 	// do something
 }
 ```
+
+---
+### tags: #tag1, #tag2

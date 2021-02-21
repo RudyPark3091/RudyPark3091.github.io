@@ -29,6 +29,11 @@ type PostData struct {
 	ID    int      `json:"id"`
 }
 
+type TagData struct {
+	Name  string `json:"name"`
+	Color string `json:"color"`
+}
+
 func mkdir(name string) {
 	os.MkdirAll(name, 0777)
 }
@@ -84,7 +89,16 @@ func findTitle(content []byte) string {
 	r, _ := regexp.Compile("# ([\\w+\\s가-힣:-{1}])*")
 	title := r.FindString(str)
 	title = strings.TrimSuffix(title, "\n")
+	title = strings.TrimPrefix(title, "# ")
 	return title
+}
+
+func findTags(content []byte) []string {
+	str := string(content)
+	r, _ := regexp.Compile("### tags: (#[a-zA-Z가-힣0-9\\.:-{1}]+,?\\s?)*")
+	tags := r.FindString(str)[9:]
+	tags = strings.TrimSuffix(tags, "\n")
+	return strings.Split(tags, ",")
 }
 
 func encode64(content []byte) []byte {
@@ -145,7 +159,7 @@ func writeJavascript(markdown string, isDir bool) func() {
 			write(target, read(viewBody))
 			// instance declaration
 			write(target, []byte(
-				"new PostList(data),",
+				"new PostList(data, tags),",
 			))
 			write(target, read(viewFooter))
 		} else {
@@ -165,14 +179,35 @@ func writeDataFile(markdown, path string) {
 	file := filepath.Join(
 		rootDirName, parseParentDir(markdown), dataFile,
 	)
-	// write(file, []byte(markdown+"\n"))
+	f, err := os.OpenFile(file, os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0600)
+	writeOnce(file, []byte("export default ["))
+	if err != nil {
+		panic(err)
+	}
+
+	mdBody := read(markdown)
+
+	e := json.NewEncoder(f)
+	e.SetIndent("", "  ")
 	p := &PostData{
-		Title: markdown,
+		Title: findTitle(mdBody),
 		URL:   markdown,
 		Icon:  "/icons/document.svg",
-		Tags:  []string{},
+		Tags:  findTags(mdBody),
 		ID:    0,
 	}
+	e.Encode(p)
+	_, err = f.Write([]byte(","))
+	if err != nil {
+		panic(err)
+	}
+}
+
+func writeTagFile(markdown, path string) {
+	tagFile := "tag.js"
+	file := filepath.Join(
+		rootDirName, parseParentDir(markdown), tagFile,
+	)
 	f, err := os.OpenFile(file, os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0600)
 	writeOnce(file, []byte("export default ["))
 	if err != nil {
@@ -181,7 +216,11 @@ func writeDataFile(markdown, path string) {
 
 	e := json.NewEncoder(f)
 	e.SetIndent("", "  ")
-	e.Encode(p)
+	t := &TagData{
+		Name:  "hi",
+		Color: "#ffffff",
+	}
+	e.Encode(t)
 	_, err = f.Write([]byte(","))
 	if err != nil {
 		panic(err)
@@ -192,6 +231,7 @@ func build(wg *sync.WaitGroup, markdown, path string) {
 	writeHTML(markdown, false)()
 	writeJavascript(markdown, false)()
 	writeDataFile(markdown, path)
+	writeTagFile(markdown, path)
 	defer wg.Done()
 }
 
@@ -224,6 +264,8 @@ func closeBracket(path string, info os.FileInfo, err error) error {
 	}
 
 	if info.Name() == "data.js" {
+		write(path, []byte("];"))
+	} else if info.Name() == "tag.js" {
 		write(path, []byte("];"))
 	}
 	return nil

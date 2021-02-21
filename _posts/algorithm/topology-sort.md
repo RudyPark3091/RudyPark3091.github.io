@@ -82,3 +82,6 @@ int main() {
 — result —
 
 1 2 5 3 6 4 7
+
+---
+### tags: #tag1, #tag2
