@@ -7,12 +7,12 @@
 export default [
   {
     "name": "algorithm",
-    "url": "/categories/algorithm",
+    "url": "/test/algorithm",
     "icon": "icons/neural.svg",
   },
   {
     "name": "frontend",
-    "url": "/categories/frontend",
+    "url": "/test/frontend",
     "icon": "https://pics.freeicons.io/uploads/icons/png/16216358401530103330-512.png",
   },
 ];

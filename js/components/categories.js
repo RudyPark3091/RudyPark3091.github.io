@@ -1,4 +1,4 @@
-import data from "../../categories/categories.data.js";
+import data from "/categories.data.js";
 
 class Categories {
   constructor(w = "30%", h = "50%", mw = "70%", mh = "30%") {

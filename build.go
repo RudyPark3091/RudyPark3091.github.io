@@ -213,7 +213,7 @@ func writeDataFile(markdown, path string, isDir bool) {
 	_, url := filepath.Split(path)
 	icon := "/icons/document.svg"
 	if isDir {
-		icon = "/icons/neural.svg"
+		icon = "/icons/folder.svg"
 	}
 
 	e := json.NewEncoder(f)

@@ -6,7 +6,10 @@ class Tags {
     $container.classList.add("postlist-tags");
 
     const $tags =
-      items.map((tag) => `<div class="postlist-tags-item" style="background-color:${tag.color};">${tag}</div>`);
+      items.map((tag) => {
+        if (!tag) return;
+        return `<div class="postlist-tags-item" style="background-color:${tag.color};">${tag}</div>`
+      });
       // items.map((tag) => `<div class="postlist-tags-item" style="background-color:${tag.color};">${tag.name}</div>`);
     $container.innerHTML = $tags.join("");
 

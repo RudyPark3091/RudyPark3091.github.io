@@ -18,6 +18,7 @@ class PostList {
     this.$container = $container;
     this.$container.onclick = (e) => {
       let target = e.target;
+      if (target.className === "postlist-container") return;
       while (target.dataset.url === undefined) target = target.parentNode;
       location.href = target.dataset.url;
     }
