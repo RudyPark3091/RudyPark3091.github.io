@@ -10,7 +10,7 @@ export default [
   {
     "name": "algorithm",
     "url": `/${ROOT_DIR}/algorithm`,
-    "icon": "icons/neural.svg",
+    "icon": "icons/algorithm.svg",
   },
   {
     "name": "frontend",
