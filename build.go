@@ -30,7 +30,7 @@ type PostData struct {
 	ID    int      `json:"id"`
 }
 
-// PostData represents content of tag.js files
+// TagData represents content of tag.js files
 type TagData struct {
 	Name  string `json:"name"`
 	Color string `json:"color"`
