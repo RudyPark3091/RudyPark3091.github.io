@@ -16,12 +16,21 @@ rm -rf $distRootDir
 echo "\033[31m> Building Application...\033[0m"
 go run build.go $distRootDir
 
-# echo "\033[31m> Connecting Github...\033[0m"
-# git add --all
-# git restore --staged serve.sh
-# git commit -m "Deploy - ${1}"
-# echo "\033[31m> Pushing remote...\033[0m"
-# git push origin master
+while getopts "m:" opt
+do
+  case $opt in
+    m)
+      echo "\033[31m> Connecting Github...\033[0m"
+      git add --all
+      git restore --staged serve.sh
+      git commit -m "Deploy - $OPTARG"
+      echo "\033[31m> Pushing remote...\033[0m"
+      git push origin master ;;
+    ?)
+      echo "\033[31m> Your deployment was not pushed to remote repository"
+      sleep 0.5 ;;
+  esac
+done
 
 echo "\033[31m> Deployment complete!\033[0m"
 echo "\033[31m> Terminating...\033[0m"
