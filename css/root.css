@@ -12,6 +12,18 @@
   --dark-color: #521;
 }
 
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg-primary-color: #444;
+    --bg-secondary-color: #555;
+    --bg-light-color: #555;
+    --bg-dark-color: #eee;
+    --primary-color: #fff;
+    --secondary-color: #666;
+    --light-color: #543;
+  }
+}
+
 html,
 body {
   margin: 0;
@@ -20,6 +32,16 @@ body {
   background-color: var(--bg-primary-color);
   color: var(--primary-color);
   font-family: "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
+}
+
+body.dark {
+  --bg-primary-color: #444;
+  --bg-secondary-color: #555;
+  --bg-light-color: #555;
+  --bg-dark-color: #eee;
+  --primary-color: #fff;
+  --secondary-color: #666;
+  --light-color: #543;
 }
 
 * {
