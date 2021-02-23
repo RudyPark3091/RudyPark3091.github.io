@@ -7,8 +7,9 @@ tput smcup
 clear
 echo "\033[0;0;H"
 
-distRootDir="test"
+distRootDir="blog"
 
+cd ~/github/RudyPark3091.github.io/
 echo "\033[31m> Removing existing files...\033[0m"
 rm -rf $distRootDir
 

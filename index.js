@@ -1,7 +1,7 @@
 import Renderer from "./js/renderer.js";
 import Styler from "./js/styler.js";
-import Namecard from "./js/components/namecard.js";
-import Categories from "./js/components/categories.js";
+import Namecard from "/js/components/namecard.js";
+import Categories from "/js/components/categories.js";
 
 const $elems = [
   new Namecard(),

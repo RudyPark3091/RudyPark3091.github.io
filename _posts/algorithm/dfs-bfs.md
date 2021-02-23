@@ -114,4 +114,4 @@ int main() {
 ```
 
 ---
-### tags: #tags.graph, #tags.search
+### tags: #그래프, #탐색

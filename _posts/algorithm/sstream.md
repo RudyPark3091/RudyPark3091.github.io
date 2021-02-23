@@ -87,4 +87,4 @@ while (getline(strm, b, ' ')) {
 ```
 
 ---
-### tags: #tag1, #tag2
+### tags: #문자열, #STL

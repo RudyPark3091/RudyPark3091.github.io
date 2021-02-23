@@ -4,7 +4,7 @@
 //   icon: String,
 // }
 
-const ROOT_DIR = "test";
+const ROOT_DIR = "blog";
 
 export default [
   {
@@ -12,9 +12,9 @@ export default [
     "url": `/${ROOT_DIR}/algorithm`,
     "icon": "icons/algorithm.svg",
   },
-  {
-    "name": "frontend",
-    "url": `/${ROOT_DIR}/frontend`,
-    "icon": "https://pics.freeicons.io/uploads/icons/png/16216358401530103330-512.png",
-  },
+  // {
+  //   "name": "frontend",
+  //   "url": `/${ROOT_DIR}/frontend`,
+  //   "icon": "",
+  // },
 ];
