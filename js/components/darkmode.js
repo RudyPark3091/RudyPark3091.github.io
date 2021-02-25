@@ -1,5 +1,8 @@
 class DarkMode {
   constructor() {
+    this.DM_KEYWORD = "rudypark3091.github.io.darkmode";
+    this.isDarkMode = !!localStorage.getItem(this.DM_KEYWORD);
+
     const $container = document.createElement("div");
     $container.classList.add("darkmode-container");
     $container.innerHTML = `
@@ -10,9 +13,10 @@ class DarkMode {
     `;
 
     const $label = $container.querySelector(".darkmode-label");
-    const isDarkMode = window.matchMedia("(prefers-color-scheme: dark)")
-      .matches;
-    if (isDarkMode) {
+    this.isDarkMode =
+      this.isDarkMode ??
+      window.matchMedia("(prefers-color-scheme: dark)").matches;
+    if (this.isDarkMode) {
       document.body.classList.add("dark");
       $container.classList.add("on");
     }
@@ -20,9 +24,20 @@ class DarkMode {
     $container.querySelector(".darkmode-toggler").onclick = (e) => {
       document.body.classList.toggle("dark");
       $container.classList.toggle("on");
+      this.toggleDarkMode();
     };
 
     this.$container = $container;
+  }
+
+  toggleDarkMode() {
+    if (this.isDarkMode) {
+      this.isDarkMode = false;
+      localStorage.setItem(this.DM_KEYWORD, "");
+    } else {
+      this.isDarkMode = true;
+      localStorage.setItem(this.DM_KEYWORD, true);
+    }
   }
 
   style() {
