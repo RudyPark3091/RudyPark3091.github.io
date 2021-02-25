@@ -12,18 +12,6 @@
   --dark-color: #521;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --bg-primary-color: #444;
-    --bg-secondary-color: #555;
-    --bg-light-color: #555;
-    --bg-dark-color: #eee;
-    --primary-color: #fff;
-    --secondary-color: #666;
-    --light-color: #543;
-  }
-}
-
 html,
 body {
   margin: 0;
@@ -60,6 +48,7 @@ body.dark {
   justify-content: center;
   align-items: center;
   background-color: var(--bg-primary-color);
+  transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
 }
 
 a {

@@ -1,6 +1,8 @@
 import * as marked from "/js/lib/marked.min.js";
 import Styler from "/js/styler.js";
+import Renderer from "/js/renderer.js";
 import Post from "/js/components/post.js";
+import DarkMode from "/js/components/darkmode.js";
 
 const decode64 = (str) => {
   return decodeURIComponent(atob(str).split('').map((c) => {
@@ -9,20 +11,21 @@ const decode64 = (str) => {
 }
 
 const $app = document.querySelector("#app");
-const $container = document.createElement("div");
-$container.classList.add("post-container");
-const $content = document.createElement("div");
-$content.classList.add("post-content");
 
 const md = decode64($app.dataset.markdown);
 $app.removeAttribute("data-markdown");
-$container.appendChild($content);
-$app.appendChild($container);
 
 const html = window.marked(md);
-$content.innerHTML = html;
 
-const post = new Post();
+const elems = [
+  new Post(html),
+  new DarkMode(),
+];
+
 const styler = new Styler();
-styler.add(post);
+elems.forEach(elem => styler.add(elem));
 styler.style();
+
+const renderer = new Renderer($app);
+elems.forEach(elem => renderer.add(elem));
+renderer.render();

@@ -1,4 +1,5 @@
 import Tags from "./tags.js";
+import DarkMode from "./darkmode.js";
 
 class PostList {
   constructor(data, tags, w = "576px", h = "80%", mw = "80%", mh = "80%") {
@@ -10,8 +11,8 @@ class PostList {
     const $container = document.createElement("div");
     $container.classList.add("postlist-container");
 
-    const $items = data.map(it => this.wrapUp(it));
-    $items.forEach(item => $container.appendChild(item));
+    const $items = data.map((it) => this.wrapUp(it));
+    $items.forEach((item) => $container.appendChild(item));
 
     this.$tags = new Tags(tags);
 
@@ -21,7 +22,7 @@ class PostList {
       if (target.className === "postlist-container") return;
       while (target.dataset.url === undefined) target = target.parentNode;
       location.href = target.dataset.url;
-    }
+    };
   }
 
   wrapUp(_data) {
@@ -42,7 +43,9 @@ class PostList {
   }
 
   style() {
-    return this.$tags.style() + `
+    return (
+      this.$tags.style() +
+      `
     .postlist-container {
       width: ${this.w};
       height: ${this.h};
@@ -92,7 +95,8 @@ class PostList {
         height: ${this.mh};
       }
     }
-    `;
+    `
+    );
   }
 
   render() {

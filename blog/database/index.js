@@ -1,8 +1,10 @@
 import Renderer from "/js/renderer.js";
 import Styler from "/js/styler.js";
 import data from "./data.js";
-import tags from "./tag.js"
+import tags from "./tag.js";
+import DarkMode from "/js/components/darkmode.js";
 import PostList from '/js/components/postList.js';const $elems = [
+  new DarkMode(),
 new PostList(data, tags),];
 
 const $target = document.querySelector("#app");

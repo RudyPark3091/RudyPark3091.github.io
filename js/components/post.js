@@ -4,7 +4,7 @@ import NotFound from "./notfound.js";
 import Loading from "./loading.js";
 
 class Post {
-  constructor(w = "60%", h = "80%", mw = "80%", mh = "80%") {
+  constructor(md, w = "60%", h = "80%", mw = "80%", mh = "80%") {
     this.w = w;
     this.h = h;
     this.mw = mw;
@@ -12,14 +12,14 @@ class Post {
 
     const $container = document.createElement("div");
     $container.classList.add("post-container");
-    $container.classList.add("hidden");
     this.$container = $container;
 
     const $content = document.createElement("div");
     $content.classList.add("post-content");
+    $content.innerHTML = md;
     this.$content = $content;
 
-    this.$xbutton = new XButton(() => this.toggleHidden());
+    this.$xbutton = new XButton(() => history.back());
     this.$notfound = new NotFound();
     this.$loading = new Loading();
     this.$container.appendChild(this.$content);
@@ -27,7 +27,7 @@ class Post {
   }
 
   update(id) {
-    const target = data.filter(it => it.id === +id)[0];
+    const target = data.filter((it) => it.id === +id)[0];
 
     // // for production env
     // const endpoint = "https://raw.githubusercontent.com/RudyPark3091/RudyPark3091.github.io/master";
@@ -36,18 +36,20 @@ class Post {
     // for development env
     const src = target.url;
 
-    this.get(src).then(content => {
-      const $html = window.marked(content);
-      this.$content.innerHTML = $html;
-      this.addPaddingToContent();
-      this.$container.appendChild(this.$xbutton.render());
-    }).catch((e) => {});
+    this.get(src)
+      .then((content) => {
+        const $html = window.marked(content);
+        this.$content.innerHTML = $html;
+        this.addPaddingToContent();
+        this.$container.appendChild(this.$xbutton.render());
+      })
+      .catch((e) => {});
   }
 
   async get(url) {
     this.$content.innerHTML = this.$loading.render().outerHTML;
     const content = await fetch(url)
-      .then(res => {
+      .then((res) => {
         if (res.status >= 400) throw new Error("not found");
         return res.text();
       })
@@ -68,10 +70,11 @@ class Post {
   }
 
   style() {
-    return this.$xbutton.style()
-      + this.$notfound.style()
-      + this.$loading.style()
-      + `
+    return (
+      this.$xbutton.style() +
+      this.$notfound.style() +
+      this.$loading.style() +
+      `
     .post-container {
       --xbutton-top: 8%;
       --xbutton-right: 10%;
@@ -128,7 +131,8 @@ class Post {
         height: ${this.mh};
       }
     }
-    `;
+    `
+    );
   }
 
   render() {
