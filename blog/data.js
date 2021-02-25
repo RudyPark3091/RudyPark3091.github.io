@@ -17,4 +17,13 @@ export default [{
   ],
   "id": 0
 }
+,{
+  "title": "database",
+  "url": "database",
+  "icon": "/icons/folder.svg",
+  "tags": [
+    ""
+  ],
+  "id": 0
+}
 ,];
