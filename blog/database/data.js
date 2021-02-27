@@ -1,5 +1,5 @@
 export default [{
-  "title": "Join",
+  "title": "JOIN",
   "url": "join",
   "icon": "/icons/document.svg",
   "tags": [
@@ -8,7 +8,7 @@ export default [{
   "id": 0
 }
 ,{
-  "title": "SELECT 문",
+  "title": "SELECT",
   "url": "select",
   "icon": "/icons/document.svg",
   "tags": [

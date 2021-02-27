@@ -1,5 +1,5 @@
 ---
-# SELECT 문
+# SELECT
 ---
 
 ## Preface
