@@ -2,7 +2,7 @@
 # SELECT 문
 ---
 
-## R for CRUD
+## Preface
 
 `SELECT` 문은 테이블의 데이터를 읽어오는 역할로, CRUD의 R을 담당한다
 
@@ -240,3 +240,30 @@ SELECT COUNT(C) FROM my_table  -- (e)
 (d): 4
 
 (e): 4
+
+---
+
+## IFNULL
+
+`IFNULL`함수는 대상 칼럼의 값이 NULL일 때 대체할 표현을 지정해주기 위해 사용한다
+
+IFNULL(대상 칼럼명, 대체 표현) 의 형식으로 사용한다
+
+```sql
+-- name 데이터가 NULL인 데이터의 name을 noname으로 출력
+SELECT IFNULL(name, 'noname')
+FROM person;
+```
+
+`IFNULL`은 `IF`와 `IS NULL`으로 대체할 수 있다
+
+### IF
+
+`IF`함수는 첫번째 인자의 조건식이 참이라면 두번째 인자를, 거짓이라면 세번째 인자를 반환한다
+
+이를 이용하여 다음과 같이 구성하면 위 쿼리와 같은 결과를 출력한다
+
+```sql
+SELECT IF(IS NULL(name), 'noname', name)
+FROM person;
+```
