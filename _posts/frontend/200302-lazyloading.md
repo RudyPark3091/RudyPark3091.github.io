@@ -107,6 +107,8 @@ const images = document.querySelectorAll("img");
 images.forEach(img => inter.observe(img));
 ```
 
+---
+
 ## 예제
 
 위 과정으로 작성한 이미지 lazy loading 예제이다
@@ -117,6 +119,8 @@ css로 fade in 효과를 줘 이미지가 로드되는 시점을 명확히 했�
   See the Pen <a href='https://codepen.io/rudypark3091/pen/MWjdXJR'>image lazy loading</a> by RudyPark3091
   (<a href='https://codepen.io/rudypark3091'>@rudypark3091</a>) on <a href='https://codepen.io'>CodePen</a>.
 </iframe></center>
+
+---
 
 ## 무한 스크롤
 
