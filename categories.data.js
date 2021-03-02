@@ -13,13 +13,13 @@ export default [
     icon: "icons/algorithm.svg",
   },
   {
+    name: "frontend",
+    url: `/${ROOT_DIR}/frontend`,
+    icon: "icons/frontend.svg",
+  },
+  {
     name: "database",
     url: `/${ROOT_DIR}/database`,
     icon: "icons/database.svg",
   },
-  // {
-  //   "name": "frontend",
-  //   "url": `/${ROOT_DIR}/frontend`,
-  //   "icon": "",
-  // },
 ];

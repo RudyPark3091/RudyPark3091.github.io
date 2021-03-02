@@ -26,4 +26,13 @@ export default [{
   ],
   "id": 0
 }
+,{
+  "title": "frontend",
+  "url": "frontend",
+  "icon": "/icons/folder.svg",
+  "tags": [
+    ""
+  ],
+  "id": 0
+}
 ,];
