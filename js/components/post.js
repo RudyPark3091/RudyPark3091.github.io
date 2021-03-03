@@ -101,13 +101,41 @@ class Post {
       word-break: break-all;
     }
 
+    .post-content h6 {
+      margin: 5px;
+    }
+
+    .post-content h2 {
+      margin-top: 35px;
+      margin-bottom: 20px;
+    }
+
+    .post-content h3 {
+      margin-top: 30px;
+      margin-bottom: 15px;
+    }
+
+    .post-content h3:last-child {
+      color: #888888;
+      font-size: 1rem;
+    }
+
+    code {
+      padding: 2px 5px;
+    }
+
     .post-content code {
-      padding: 2px 7px;
       background-color: var(--bg-secondary-color);
       border-radius: 5px;
     }
 
+    pre {
+      margin-top: 25px;
+      margin-bottom: 25px;
+    }
+
     pre > code {
+      padding: 0px;
       font-family: "victor mono", sans-serif;
       font-size: 0.7rem;
     }
