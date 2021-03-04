@@ -97,7 +97,7 @@ document.body에 라벨과 버튼을 추가하고, 버튼을 누르면 라벨의
 
 그러나 이대로 실행하게 되면 에러가 발생한다
 
-```
+``` Text
 Uncaught TypeError: Cannot set property 'innerText' of undefined at HTMLButtonElement.handleClick
 ```
 

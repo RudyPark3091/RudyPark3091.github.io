@@ -120,13 +120,10 @@ class Post {
       font-size: 1rem;
     }
 
-    code {
+    .post-content p > code {
       padding: 2px 5px;
-    }
-
-    .post-content code {
-      background-color: var(--bg-secondary-color);
       border-radius: 5px;
+      background-color: var(--bg-secondary-color);
     }
 
     pre {
@@ -134,16 +131,15 @@ class Post {
       margin-bottom: 25px;
     }
 
-    pre > code {
-      padding: 0px;
+    .post-content pre > code {
       font-family: "victor mono", sans-serif;
       font-size: 0.7rem;
+      padding: 20px;
     }
 
     .post-content pre {
       --padding: 10px;
       width: calc(100% - var(--padding) * 2);
-      background-color: var(--bg-secondary-color);
       border-radius: 5px;
       padding: var(--padding);
       overflow: scroll;
