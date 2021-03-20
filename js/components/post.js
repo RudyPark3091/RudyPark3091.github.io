@@ -4,7 +4,7 @@ import NotFound from "./notfound.js";
 import Loading from "./loading.js";
 
 class Post {
-  constructor(md, w = "60%", h = "80%", mw = "80%", mh = "80%") {
+  constructor(md, w = "50%", h = "80%", mw = "80%", mh = "80%") {
     this.w = w;
     this.h = h;
     this.mw = mw;
@@ -76,11 +76,9 @@ class Post {
       this.$loading.style() +
       `
     .post-container {
-      --xbutton-top: 8%;
-      --xbutton-right: 10%;
       position: absolute;
-      width: ${this.w};
-      height: ${this.h};
+      width: 100%;
+      height: 100%;
       padding: 30px;
       border-radius: 5px;
       background-color: var(--bg-primary-color);
@@ -89,6 +87,12 @@ class Post {
       justify-content: center;
       align-items: center;
       overflow: scroll;
+      scrollbar-width: 0px;
+      scrollbar-color: transparent;
+    }
+
+    .post-container::-webkit-scrollbar {
+      display: none;
     }
 
     .post-container.hidden {
@@ -96,8 +100,8 @@ class Post {
     }
 
     .post-content {
-      width: 100%;
-      height: 100%;
+      width: ${this.w};
+      height: ${this.h};
       word-break: break-all;
     }
 
@@ -118,6 +122,7 @@ class Post {
     .post-content h3:last-child {
       color: #888888;
       font-size: 1rem;
+      padding-bottom: 2rem;
     }
 
     .post-content p > code {
@@ -149,8 +154,22 @@ class Post {
       padding-bottom: 30px;
     }
 
+    @media screen and (max-width: 1180px) {
+      .post-content {
+        width: calc(${this.w} + 10%);
+        height: calc(${this.h} + 10%);
+      }
+    }
+
     @media screen and (max-width: 900px) {
-      .post-container {
+      .post-content {
+        width: calc(${this.mw} - 10%);
+        height: calc(${this.mh} - 10%);
+      }
+    }
+
+    @media screen and (max-width: 740px) {
+      .post-content {
         width: ${this.mw};
         height: ${this.mh};
       }

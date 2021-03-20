@@ -1,7 +1,13 @@
 class XButton {
-  constructor(handleClick, size = "20", offset = "20") {
+  constructor(
+    handleClick,
+    size = "1.2rem",
+    offset = "1.2rem",
+    mediaOffset = "2rem"
+  ) {
     this.size = size;
     this.offset = offset;
+    this.mediaOffset = mediaOffset;
 
     const $container = document.createElement("div");
     $container.classList.add("xbutton-container");
@@ -42,7 +48,7 @@ class XButton {
     this.$container = $container;
     this.$container.onclick = (e) => {
       handleClick();
-    }
+    };
   }
 
   style() {
@@ -51,9 +57,16 @@ class XButton {
       width: ${this.size}px;
       height: ${this.size}px;
       position: fixed;
-      top: calc(var(--xbutton-top) - ${this.offset}px);
-      right: calc(var(--xbutton-right) - ${this.offset}px);
+      top: ${this.offset};
+      right: ${this.offset};
       cursor: pointer;
+    }
+
+    @media screen and (max-width: 900px) {
+      .xbutton-container {
+        top: ${this.mediaOffset};
+        right: ${this.mediaOffset};
+      }
     }
     `;
   }
